@@ -7,6 +7,11 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     cover: z.string().optional(),
+    // Адмінка зберігає одне фото як рядок, кілька — як список. Приймаємо обидва варіанти.
+    gallery: z
+      .union([z.string(), z.array(z.string())])
+      .nullish()
+      .transform((v) => (v ? (Array.isArray(v) ? v : [v]) : []).filter(Boolean)),
     draft: z.boolean().default(false),
   }),
 });

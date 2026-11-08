@@ -21,7 +21,12 @@ content:
     fields:
       - { name: title, label: Заголовок, type: string, required: true }
       - { name: date, label: Дата, type: date, required: true }
-      - { name: cover, label: Головне фото, type: image }
+      - { name: cover, label: Головне фото (на картці новини), type: image }
+      - name: gallery
+        label: Фотогалерея (можна вибрати багато фото одразу)
+        type: image
+        options:
+          multiple: true
       - { name: draft, label: Чернетка (не показувати на сайті), type: boolean }
       - { name: body, label: Текст новини, type: rich-text }
 

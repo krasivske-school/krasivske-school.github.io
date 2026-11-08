@@ -15,23 +15,93 @@ export async function getStaticPaths() {
 
 const { entry, kind } = Astro.props;
 const { Content } = await render(entry);
-const date = kind === 'news' ? (entry.data as { date: Date }).date : undefined;
-const cover = kind === 'news' ? (entry.data as { cover?: string }).cover : undefined;
+const news = kind === 'news' ? (entry.data as { date: Date; cover?: string; gallery: string[] }) : undefined;
+const src = (s: string) => (s.startsWith('/') ? url(s) : s);
+const gallery = (news?.gallery ?? []).map(src);
 ---
 <Base title={entry.data.title} current="novyny">
   <PageHead title={entry.data.title} crumbs={[{ title: 'Новини', href: '/novyny/' }]}>
-    {date && <time class="date" datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>}
+    {news && <time class="date" datetime={news.date.toISOString().slice(0, 10)}>{formatDate(news.date)}</time>}
   </PageHead>
   <div class="wrap section">
     <article class="prose">
-      {cover && <img class="cover" src={cover.startsWith('/') ? url(cover) : cover} alt="" />}
+      {news?.cover && <img class="cover" src={src(news.cover)} alt="" />}
       <Content />
-      <p><a href={url('/novyny/')}>← Усі новини</a></p>
     </article>
+
+    {gallery.length > 0 && (
+      <section class="gallery" aria-label="Фотогалерея">
+        <h2>Фото <span>{gallery.length}</span></h2>
+        <div class="gallery__grid">
+          {gallery.map((g, i) => (
+            <a href={g} data-i={i} target="_blank" rel="noopener">
+              <img src={g} alt={`Фото ${i + 1}`} loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <p><a href={url('/novyny/')}>← Усі новини</a></p>
   </div>
+
+  {gallery.length > 0 && (
+    <dialog class="lb" aria-label="Перегляд фото">
+      <img alt="" />
+      <button class="lb__btn lb__close" type="button" aria-label="Закрити">✕</button>
+      <button class="lb__btn lb__prev" type="button" aria-label="Попереднє фото">←</button>
+      <button class="lb__btn lb__next" type="button" aria-label="Наступне фото">→</button>
+      <span class="lb__count"></span>
+    </dialog>
+  )}
 </Base>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('.lb');
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.gallery__grid a')];
+  if (dlg && links.length) {
+    const img = dlg.querySelector('img')!;
+    const count = dlg.querySelector('.lb__count')!;
+    let i = 0;
+    const show = (n: number) => {
+      i = (n + links.length) % links.length;
+      img.src = links[i].href;
+      count.textContent = `${i + 1} / ${links.length}`;
+    };
+    links.forEach((a, n) => a.addEventListener('click', (e) => { e.preventDefault(); show(n); dlg.showModal(); }));
+    dlg.querySelector('.lb__close')!.addEventListener('click', () => dlg.close());
+    dlg.querySelector('.lb__prev')!.addEventListener('click', () => show(i - 1));
+    dlg.querySelector('.lb__next')!.addEventListener('click', () => show(i + 1));
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!dlg.open) return;
+      if (e.key === 'ArrowLeft') show(i - 1);
+      if (e.key === 'ArrowRight') show(i + 1);
+    });
+  }
+</script>
 
 <style>
   .date { font-weight: 600; }
   .cover { width: 100%; max-height: 520px; object-fit: cover; }
+
+  .gallery { display: grid; gap: 16px; padding-block: 32px; }
+  .gallery h2 { font-size: 26px; }
+  .gallery h2 span { color: var(--muted); font-weight: 600; }
+  .gallery__grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .gallery__grid a { display: block; border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-soft); }
+  .gallery__grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .25s; }
+  .gallery__grid a:hover img { transform: scale(1.04); }
+
+  .lb { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
+  .lb::backdrop { background: rgba(0, 0, 0, .92); }
+  .lb[open] { display: grid; place-items: center; }
+  .lb img { max-width: calc(100vw - 32px); max-height: calc(100vh - 120px); object-fit: contain; border-radius: 12px; }
+  .lb__btn { position: fixed; width: 52px; height: 52px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 22px; cursor: pointer; }
+  .lb__btn:hover { background: rgba(255, 255, 255, .28); }
+  .lb__close { top: max(16px, env(safe-area-inset-top)); right: 16px; }
+  .lb__prev { left: 16px; top: 50%; translate: 0 -50%; }
+  .lb__next { right: 16px; top: 50%; translate: 0 -50%; }
+  .lb__count { position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; translate: -50% 0; color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) { .lb__prev, .lb__next { top: auto; bottom: 12px; translate: none; } }
 </style>
