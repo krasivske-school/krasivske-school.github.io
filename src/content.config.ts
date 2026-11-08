@@ -7,6 +7,8 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     cover: z.string().optional(),
+    // Назва папки в public/uploads/galereia — усі фото з неї потрапляють у галерею.
+    photosFolder: z.string().nullish(),
     // Адмінка зберігає одне фото як рядок, кілька — як список. Приймаємо обидва варіанти.
     gallery: z
       .union([z.string(), z.array(z.string())])

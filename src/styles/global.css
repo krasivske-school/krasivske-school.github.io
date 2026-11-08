@@ -100,6 +100,9 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose h3 { margin-top: 8px; }
 .prose ul, .prose ol { padding-left: 1.3em; display: grid; gap: 6px; }
 .prose img { border-radius: var(--radius-sm); }
+/* Смайлики, скопійовані з Facebook разом із текстом, приходять картинками — показуємо їх як смайлики. */
+.prose img[src*="emoji.php"] { display: inline; width: 1.2em; height: 1.2em; border-radius: 0; vertical-align: -0.2em; margin: 0 .1em; }
+.prose p:has(> img[src*="emoji.php"]:only-child) { margin-top: -12px; }
 .prose p:has(> img + img) {
   display: grid; gap: 8px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

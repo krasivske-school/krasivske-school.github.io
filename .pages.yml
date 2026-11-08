@@ -22,8 +22,11 @@ content:
       - { name: title, label: Заголовок, type: string, required: true }
       - { name: date, label: Дата, type: date, required: true }
       - { name: cover, label: Головне фото (на картці новини), type: image }
+      - name: photosFolder
+        label: "Папка з фото (назва папки в public/uploads/galereia — усі фото з неї з'являться в галереї)"
+        type: string
       - name: gallery
-        label: Фотогалерея (можна вибрати багато фото одразу)
+        label: Окремі фото для галереї (додавайте по одному)
         type: image
         options:
           multiple: true

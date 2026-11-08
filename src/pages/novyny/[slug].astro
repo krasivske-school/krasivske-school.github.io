@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
@@ -15,9 +17,25 @@ export async function getStaticPaths() {
 
 const { entry, kind } = Astro.props;
 const { Content } = await render(entry);
-const news = kind === 'news' ? (entry.data as { date: Date; cover?: string; gallery: string[] }) : undefined;
+const news = kind === 'news' ? (entry.data as { date: Date; cover?: string; gallery: string[]; photosFolder?: string | null }) : undefined;
 const src = (s: string) => (s.startsWith('/') ? url(s) : s);
-const gallery = (news?.gallery ?? []).map(src);
+
+// Усі фото з папки public/uploads/galereia/<назва> (за алфавітом).
+function folderPhotos(folder?: string | null): string[] {
+  const name = folder?.trim().replace(/^\/+|\/+$/g, '');
+  if (!name || name.includes('..')) return [];
+  const dir = path.join(process.cwd(), 'public', 'uploads', 'galereia', name);
+  if (!fs.existsSync(dir)) {
+    console.warn(`[галерея] Папку не знайдено: public/uploads/galereia/${name}`);
+    return [];
+  }
+  return fs.readdirSync(dir)
+    .filter((f) => /\.(jpe?g|png|webp|gif|avif)$/i.test(f))
+    .sort((a, b) => a.localeCompare(b, 'uk', { numeric: true }))
+    .map((f) => `/uploads/galereia/${name.split('/').map(encodeURIComponent).join('/')}/${encodeURIComponent(f)}`);
+}
+
+const gallery = [...folderPhotos(news?.photosFolder), ...(news?.gallery ?? [])].map(src);
 ---
 <Base title={entry.data.title} current="novyny">
   <PageHead title={entry.data.title} crumbs={[{ title: 'Новини', href: '/novyny/' }]}>
