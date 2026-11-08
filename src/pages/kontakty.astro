@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import site from '../data/site.json';
+const c = site.contacts;
+---
+<Base title="Контакти" description="Адреса, телефони і телефони довіри." current="kontakty">
+  <PageHead title="Контакти" lead="Як зв’язатися з нами і куди звернутися по допомогу." />
+  <div class="wrap section">
+    <div class="grid">
+      <div class="box box--dark">
+        <span class="label">Адреса</span>
+        <p class="big">{c.address}</p>
+        <a class="btn" href={c.mapUrl} target="_blank" rel="noopener">Відкрити на мапі</a>
+      </div>
+      <div class="box">
+        <span class="label">Телефон</span>
+        <p class="big">{c.phone}</p>
+        <p class="muted">{c.phoneNote}</p>
+        {c.email && (<><span class="label">E-mail</span><p class="big"><a href={`mailto:${c.email}`}>{c.email}</a></p></>)}
+        {c.facebook && <p><a href={c.facebook}>Сторінка у Facebook</a></p>}
+      </div>
+    </div>
+
+    <h2>Телефони довіри</h2>
+    <div class="hot">
+      {site.hotlines.map((h) => (
+        <div class="box">
+          <p class="big">{h.phone}</p>
+          <b>{h.name}</b>
+          <span class="muted">{h.note}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+  .hot { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .box { background: var(--bg-soft); border-radius: var(--radius); padding: 32px; display: grid; gap: 10px; align-content: start; }
+  .box--dark { background: var(--ink); color: var(--bg); }
+  .box--dark .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); justify-self: start; margin-top: 8px; }
+  .label { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+  .big { font-size: 24px; font-weight: 800; line-height: 1.3; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+</style>

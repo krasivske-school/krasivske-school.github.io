@@ -1,0 +1,113 @@
+/* Стиль у дусі gov.ua / Дія / Мрія: чорний текст на білому, великі заголовки,
+   м'які сірі картки з великим радіусом, чорні кнопки-пігулки, пастельний градієнт у шапці. */
+@import '@fontsource/manrope/cyrillic-400.css';
+@import '@fontsource/manrope/cyrillic-600.css';
+@import '@fontsource/manrope/cyrillic-800.css';
+@import '@fontsource/manrope/latin-400.css';
+@import '@fontsource/manrope/latin-600.css';
+@import '@fontsource/manrope/latin-800.css';
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f2f3f5;
+  --ink: #000000;
+  --muted: #5c6066;
+  --line: #e1e3e6;
+  --link: #1650c8;
+  --accent: #ffd400;
+  --grad: linear-gradient(115deg, #d8f3e8 0%, #e2e6fb 45%, #f7e3ee 100%);
+  --radius: 24px;
+  --radius-sm: 16px;
+  --font: 'e-Ukraine', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wrap: 1200px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f11;
+    --bg-soft: #1b1d21;
+    --ink: #ffffff;
+    --muted: #a3a8b0;
+    --line: #2c2f35;
+    --link: #8db1ff;
+    --grad: linear-gradient(115deg, #17332a 0%, #1d2240 45%, #3a1f2d 100%);
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--font);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+h1, h2, h3 { line-height: 1.15; margin: 0; text-wrap: balance; font-weight: 800; letter-spacing: -0.02em; }
+h1 { font-size: clamp(32px, 5vw, 56px); }
+h2 { font-size: clamp(24px, 3vw, 36px); }
+h3 { font-size: 20px; letter-spacing: -0.01em; }
+p { margin: 0; }
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.stack { display: grid; gap: 24px; }
+.section { padding-block: 56px; display: grid; gap: 28px; }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+/* Кнопки */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; border-radius: 999px;
+  background: var(--ink); color: var(--bg);
+  font-weight: 600; font-size: 16px; text-decoration: none;
+  border: 2px solid var(--ink);
+}
+.btn:hover { opacity: .85; }
+.btn--ghost { background: transparent; color: var(--ink); }
+
+/* Картки */
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.card {
+  background: var(--bg-soft); border-radius: var(--radius);
+  padding: 28px; display: grid; gap: 10px; align-content: start;
+  color: inherit; text-decoration: none; min-width: 0;
+  transition: background .15s;
+}
+a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
+.card h3 { font-size: 20px; }
+.card p { color: var(--muted); font-size: 15px; }
+.card .arrow { margin-top: auto; font-size: 22px; line-height: 1; }
+
+/* Хлібні крихти */
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px; font-size: 14px; color: var(--muted); padding-top: 24px; }
+.crumbs a { color: var(--muted); }
+
+/* Текст сторінок */
+.prose { max-width: 760px; display: grid; gap: 18px; }
+.prose > * { margin: 0; }
+.prose h2 { font-size: 28px; margin-top: 16px; }
+.prose h3 { margin-top: 8px; }
+.prose ul, .prose ol { padding-left: 1.3em; display: grid; gap: 6px; }
+.prose img { border-radius: var(--radius-sm); }
+.prose p:has(> img + img) {
+  display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.prose p:has(> img + img) img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.prose .video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-soft); }
+.prose .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
+.prose td, .prose th { border: 1px solid var(--line); padding: 8px 12px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { formatDate, url } from '../../lib/nav';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news', ({ data }) => !data.draft);
+  const pages = await getCollection('pages', ({ data }) => data.section === 'novyny');
+  return [
+    ...news.map((entry) => ({ params: { slug: entry.id }, props: { entry, kind: 'news' as const } })),
+    ...pages.map((entry) => ({ params: { slug: entry.id }, props: { entry, kind: 'page' as const } })),
+  ];
+}
+
+const { entry, kind } = Astro.props;
+const { Content } = await render(entry);
+const date = kind === 'news' ? (entry.data as { date: Date }).date : undefined;
+const cover = kind === 'news' ? (entry.data as { cover?: string }).cover : undefined;
+---
+<Base title={entry.data.title} current="novyny">
+  <PageHead title={entry.data.title} crumbs={[{ title: 'Новини', href: '/novyny/' }]}>
+    {date && <time class="date" datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>}
+  </PageHead>
+  <div class="wrap section">
+    <article class="prose">
+      {cover && <img class="cover" src={cover.startsWith('/') ? url(cover) : cover} alt="" />}
+      <Content />
+      <p><a href={url('/novyny/')}>← Усі новини</a></p>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .date { font-weight: 600; }
+  .cover { width: 100%; max-height: 520px; object-fit: cover; }
+</style>

@@ -1,0 +1,24 @@
+---
+import { url } from '../lib/nav';
+interface Props { title: string; lead?: string; crumbs?: { title: string; href: string }[] }
+const { title, lead, crumbs = [] } = Astro.props;
+---
+<div class="ph">
+  <div class="wrap ph__in">
+    <nav class="crumbs" aria-label="Навігація">
+      <a href={url('/')}>Головна</a>
+      {crumbs.map((c) => (<><span aria-hidden="true">/</span><a href={url(c.href)}>{c.title}</a></>))}
+    </nav>
+    <h1 class:list={{ long: title.length > 70 }}>{title}</h1>
+    {lead && <p class="ph__lead">{lead}</p>}
+    <slot />
+  </div>
+</div>
+
+<style>
+  .ph { background: var(--grad); }
+  .ph__in { display: grid; gap: 18px; padding-bottom: 48px; }
+  .ph h1 { font-size: clamp(30px, 4.4vw, 48px); max-width: 22ch; }
+  .ph h1.long { font-size: clamp(24px, 2.8vw, 34px); max-width: 36ch; }
+  .ph__lead { font-size: 19px; max-width: 62ch; }
+</style>

@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { url } from '../lib/nav';
+---
+<Base title="Сторінку не знайдено">
+  <PageHead title="Сторінку не знайдено" lead="Можливо, її перенесли під час оновлення сайту.">
+    <a class="btn" href={url('/')} style="justify-self:start">На головну</a>
+  </PageHead>
+</Base>

@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import site from '../../data/site.json';
+---
+<Base title="Адміністрація" description="Директор, заступники і працівники закладу." current="pro-nas">
+  <PageHead title="Адміністрація" lead="Хто керує закладом і до кого звертатися." crumbs={[{ title: 'Про нас', href: '/pro-nas/' }]} />
+  <div class="wrap section">
+    <div class="people">
+      {site.administration.map((p, i) => (
+        <article class={i === 0 ? 'person person--main' : 'person'}>
+          <span class="person__role">{p.role}</span>
+          <h2>{p.name}</h2>
+          <ul>{p.details.map((d) => <li>{d}</li>)}</ul>
+          {p.phone && <p class="person__phone">{p.phone}</p>}
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .people { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .person { background: var(--bg-soft); border-radius: var(--radius); padding: 28px; display: grid; gap: 12px; align-content: start; }
+  .person--main { background: var(--ink); color: var(--bg); grid-column: 1 / -1; }
+  .person--main ul { color: color-mix(in srgb, var(--bg) 70%, var(--ink)); }
+  .person__role { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+  .person h2 { font-size: 24px; }
+  .person ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; color: var(--muted); font-size: 15px; }
+  .person__phone { font-size: 22px; font-weight: 800; }
+</style>

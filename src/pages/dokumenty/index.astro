@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import data from '../../data/documents.json';
+import { url } from '../../lib/nav';
+
+const textPages = (await getCollection('pages', ({ data }) => data.section === 'dokumenty'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const groups = data.categories
+  .map((c) => ({ ...c, docs: data.documents.filter((d) => d.category === c.id) }))
+  .filter((g) => g.docs.length > 0);
+
+function kind(u: string) {
+  if (u.includes('docs.google.com')) return 'Google Docs';
+  if (u.includes('drive.google.com')) return 'Google Drive';
+  if (u.toLowerCase().endsWith('.pdf')) return 'PDF';
+  return 'Файл';
+}
+---
+<Base title="Документи" description="Публічна інформація закладу: статут, ліцензії, звіти, кошторис, атестація." current="dokumenty">
+  <PageHead title="Документи" lead="Публічна інформація закладу відповідно до статті 30 Закону України «Про освіту».">
+    <div class="search">
+      <label for="q" class="sr">Пошук документа</label>
+      <input id="q" type="search" placeholder="Пошук документа, наприклад «статут»" autocomplete="off" />
+    </div>
+  </PageHead>
+
+  <div class="wrap">
+    <nav class="chips section" aria-label="Категорії">
+      {groups.map((g) => <a href={`#${g.id}`}>{g.title} <span>{g.docs.length}</span></a>)}
+      {textPages.map((p) => <a href={url(`/dokumenty/${p.id}/`)}>{p.data.title}</a>)}
+    </nav>
+
+    {groups.map((g) => (
+      <section class="group" id={g.id} data-group>
+        <h2>{g.title}</h2>
+        <ul class="docs">
+          {g.docs.map((d) => (
+            <li data-doc data-text={d.title.toLowerCase()}>
+              <a href={d.url.startsWith('/') ? url(d.url) : d.url} target="_blank" rel="noopener">
+                <svg class="docs__icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M6 2h8l6 6v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v6h6M9 13h8M9 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span class="docs__title">{d.title}</span>
+                <span class="docs__meta">{d.year && <b>{d.year}</b>}<span>{kind(d.url)}</span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+    <p id="empty" class="muted" hidden>Нічого не знайдено. Спробуйте інше слово.</p>
+  </div>
+</Base>
+
+<script>
+  const q = document.getElementById('q') as HTMLInputElement;
+  const empty = document.getElementById('empty')!;
+  q.addEventListener('input', () => {
+    const v = q.value.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
+      let n = 0;
+      g.querySelectorAll<HTMLElement>('[data-doc]').forEach((li) => {
+        const ok = !v || (li.dataset.text ?? '').includes(v);
+        li.hidden = !ok;
+        if (ok) n++;
+      });
+      g.hidden = n === 0;
+      shown += n;
+    });
+    empty.hidden = shown > 0;
+  });
+</script>
+
+<style>
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .search input { width: 100%; max-width: 640px; font: inherit; font-size: 17px; padding: 16px 22px; border-radius: 999px; border: 2px solid transparent; background: var(--bg); color: var(--ink); }
+  .search input:focus { border-color: var(--ink); outline: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 8px; }
+  .chips a { background: var(--bg-soft); color: var(--ink); text-decoration: none; padding: 10px 16px; border-radius: 999px; font-weight: 600; font-size: 15px; }
+  .chips a span { color: var(--muted); font-weight: 400; margin-left: 4px; }
+  .chips a:hover { background: var(--line); }
+  .group { display: grid; gap: 16px; padding-block: 28px; scroll-margin-top: 90px; }
+  .group h2 { font-size: 26px; }
+  .docs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .docs a { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; padding: 18px 22px; background: var(--bg-soft); border-radius: var(--radius-sm); color: var(--ink); text-decoration: none; }
+  .docs a:hover { background: var(--line); }
+  .docs__title { font-weight: 600; min-width: 0; }
+  .docs__meta { display: flex; gap: 12px; font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .docs__meta b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) {
+    .docs a { grid-template-columns: auto 1fr; }
+    .docs__meta { grid-column: 2; }
+  }
+</style>

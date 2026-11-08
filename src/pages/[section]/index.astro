@@ -1,0 +1,47 @@
+---
+// Сторінки розділів «Про нас» і «Батькам»: список карток зі сторінками розділу.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { sections, url } from '../../lib/nav';
+
+export function getStaticPaths() {
+  return ['pro-nas', 'batkam'].map((section) => ({ params: { section } }));
+}
+
+const { section } = Astro.params;
+const meta = sections.find((s) => s.id === section)!;
+const pages = (await getCollection('pages', ({ data }) => data.section === section))
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Додаткові «вбудовані» сторінки, які не є markdown-файлами.
+const extra = section === 'pro-nas'
+  ? [{ id: 'administratsiia', title: 'Адміністрація', description: 'Директор, заступники і працівники закладу.', group: undefined, order: 20 }]
+  : [];
+
+const items = [
+  ...pages.map((p) => ({ id: p.id, title: p.data.title, description: p.data.description, group: p.data.group, order: p.data.order })),
+  ...extra,
+].sort((a, b) => a.order - b.order);
+
+const groups = [...new Set(items.map((i) => i.group ?? ''))];
+---
+<Base title={meta.title} description={meta.description} current={section}>
+  <PageHead title={meta.title} lead={meta.description} />
+  <div class="wrap">
+    {groups.map((g) => (
+      <section class="section">
+        {g && <h2>{g}</h2>}
+        <div class="cards">
+          {items.filter((i) => (i.group ?? '') === g).map((i) => (
+            <a class="card" href={url(`/${section}/${i.id}/`)}>
+              <h3>{i.title}</h3>
+              {i.description && <p>{i.description}</p>}
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>

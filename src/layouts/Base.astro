@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+import { sections, url } from '../lib/nav';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: string;
+}
+const { title, description = site.about, current } = Astro.props;
+const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
+---
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+</head>
+<body>
+  <a class="skip" href="#main">Перейти до змісту</a>
+  <header class="top">
+    <div class="wrap top__in">
+      <a class="logo" href={url('/')} aria-label={`${site.fullName} — головна`}>
+        <span class="logo__mark" aria-hidden="true">К</span>
+        <span class="logo__text"><b>{site.name}</b><small>Новопільської сільської ради</small></span>
+      </a>
+      <nav class="nav" aria-label="Головне меню">
+        {sections.map((s) => (
+          <a href={url(`/${s.id}/`)} aria-current={current === s.id ? 'page' : undefined}>{s.title}</a>
+        ))}
+      </nav>
+      <details class="burger">
+        <summary aria-label="Меню"><span></span><span></span><span></span></summary>
+        <nav class="burger__menu" aria-label="Мобільне меню">
+          {sections.map((s) => (
+            <a href={url(`/${s.id}/`)} aria-current={current === s.id ? 'page' : undefined}>{s.title}</a>
+          ))}
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__col">
+        <b>{site.fullName}</b>
+        <span>{site.contacts.address}</span>
+      </div>
+      <div class="foot__col">
+        <span>Телефон: {site.contacts.phone}</span>
+        {site.contacts.email && <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a>}
+        {site.contacts.facebook && <a href={site.contacts.facebook}>Facebook</a>}
+      </div>
+      <nav class="foot__col" aria-label="Нижнє меню">
+        {sections.map((s) => <a href={url(`/${s.id}/`)}>{s.title}</a>)}
+      </nav>
+    </div>
+    <div class="wrap foot__copy">© {new Date().getFullYear()} {site.fullName}</div>
+  </footer>
+</body>
+</html>
+
+<style>
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 16px; top: 16px; z-index: 100; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; }
+
+  .top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .top__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
+  .logo { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+  .logo__mark { width: 44px; height: 44px; border-radius: 14px; background: var(--ink); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 22px; flex: none; }
+  .logo__text { display: grid; line-height: 1.2; }
+  .logo__text b { font-size: 17px; font-weight: 800; }
+  .logo__text small { font-size: 13px; color: var(--muted); }
+
+  .nav { display: flex; gap: 4px; }
+  .nav a, .burger__menu a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 16px; padding: 10px 16px; border-radius: 999px; }
+  .nav a:hover { background: var(--bg-soft); }
+  .nav a[aria-current='page'], .burger__menu a[aria-current='page'] { background: var(--ink); color: var(--bg); }
+
+  .burger { display: none; position: relative; }
+  .burger summary { list-style: none; cursor: pointer; width: 48px; height: 48px; border-radius: 999px; background: var(--bg-soft); display: grid; place-content: center; gap: 5px; }
+  .burger summary::-webkit-details-marker { display: none; }
+  .burger summary span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+  .burger__menu { position: absolute; right: 0; top: 58px; background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 8px; display: grid; min-width: 220px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.3); }
+
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .burger { display: block; }
+  }
+
+  .foot { margin-top: 80px; background: var(--bg-soft); padding-block: 48px 32px; font-size: 15px; }
+  .foot__in { display: grid; grid-template-columns: 2fr 1.2fr 1fr; gap: 32px; }
+  .foot__col { display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .foot__col a { color: var(--ink); }
+  .foot__copy { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) { .foot__in { grid-template-columns: 1fr; } }
+</style>

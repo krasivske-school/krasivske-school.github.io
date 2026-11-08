@@ -1,0 +1,75 @@
+{
+  "categories": [
+    { "id": "ustanovchi", "title": "Установчі документи" },
+    { "id": "litsenzuvannia", "title": "Ліцензування" },
+    { "id": "osvitni-prohramy", "title": "Освітні програми" },
+    { "id": "zvitnist", "title": "Звітність і фінанси" },
+    { "id": "atestatsiia", "title": "Атестація педагогів" },
+    { "id": "pidruchnyky", "title": "Вибір підручників" },
+    { "id": "bezpeka", "title": "Безпека і протидія булінгу" },
+    { "id": "batkam", "title": "Для батьків" }
+  ],
+  "documents": [
+    { "title": "Статут ліцею", "category": "ustanovchi", "year": "", "url": "https://drive.google.com/file/d/1feI224oj56Ocuk7FTibG1wfoKieQ79W4/view" },
+    { "title": "Рішення засновника", "category": "ustanovchi", "year": "", "url": "https://drive.google.com/file/d/1UJ-SIk1VE9mutmB3eFUAHRuz4Cjtd7l6/view" },
+
+    { "title": "Ліцензія Красівського ліцею", "category": "litsenzuvannia", "year": "", "url": "https://drive.google.com/file/d/1rf8gfT4hfobhmGgQlJrkZrJGCBAZ4tSp/view" },
+    { "title": "Ліцензія філій", "category": "litsenzuvannia", "year": "", "url": "https://drive.google.com/file/d/1gU3Zujr9SpEEJ8-dB15Zh6A0C6mDRauP/view" },
+    { "title": "Відомості про кадрове забезпечення освітньої діяльності", "category": "litsenzuvannia", "year": "", "url": "https://docs.google.com/document/d/1_SEcqaE74B-5tTZgdd1MsUX8e3yS6Khd/edit" },
+    { "title": "Відомості про матеріально-технічне забезпечення", "category": "litsenzuvannia", "year": "", "url": "https://docs.google.com/document/d/1f_tYIwzkYKkRh0klcvhOmlULcS0DQG7y/edit" },
+    { "title": "Відомості про навчально-методичне та інформаційне забезпечення", "category": "litsenzuvannia", "year": "", "url": "https://docs.google.com/document/d/1k_-LUni_ISi83PvwpyGytiD2RFSBsI9s/edit" },
+    { "title": "Мережа класів", "category": "litsenzuvannia", "year": "2021–2022", "url": "https://docs.google.com/document/d/1T4GtdP1GHmkVEKV2ikbeGR0_j7Tf1Nlu/edit" },
+
+    { "title": "Освітня програма Красівського ліцею", "category": "osvitni-prohramy", "year": "2021–2022", "url": "https://docs.google.com/document/d/1miI2q1JbqGDW-rs4O1lRHoQwt8MjaW5m/edit" },
+    { "title": "Освітні програми для 1–2 класів", "category": "osvitni-prohramy", "year": "2021–2022", "url": "https://drive.google.com/file/d/1zHGEaIMSd3J1VILLXvJmbD8iLNdaCeSS/view" },
+    { "title": "Освітні програми для 3–4 класів", "category": "osvitni-prohramy", "year": "2021–2022", "url": "https://drive.google.com/file/d/15cKUUQn2gIwbiQYmDHci9nZ1aHWfzU-l/view" },
+    { "title": "Освітня програма (додаток)", "category": "osvitni-prohramy", "year": "", "url": "https://drive.google.com/file/d/117Hp11JvJzJsGZCjGjazeuIU4xBYC02C/view" },
+
+    { "title": "Звіт керівника Красівського ліцею", "category": "zvitnist", "year": "", "url": "https://docs.google.com/document/d/1kRQpMzwrOXWT0ertmgALqEgStt7Ovhrf/edit" },
+    { "title": "Кошторис і фінансовий звіт про надходження та використання коштів", "category": "zvitnist", "year": "", "url": "https://drive.google.com/file/d/1zWN5FtmWiNb_YgA-HQjevK3buPDMgJXN/view" },
+    { "title": "Кошторис на 2023 рік", "category": "zvitnist", "year": "2023", "url": "https://drive.google.com/file/d/1gJQ01a18lhPTfWBbSPHK-JbcVlHBT01i/view" },
+
+    { "title": "Наказ про атестацію", "category": "atestatsiia", "year": "", "url": "https://drive.google.com/file/d/1omebqHq0xgNsFR-ASLMhWKorjhgikVXx/view" },
+    { "title": "Список педпрацівників, які атестуються атестаційною комісією", "category": "atestatsiia", "year": "", "url": "https://drive.google.com/file/d/1SytuMJCW-y4rsYQX5sNrGyzJs_osji5-/view" },
+    { "title": "Список педпрацівників, які атестуються позачергово", "category": "atestatsiia", "year": "", "url": "https://drive.google.com/file/d/1NPH5-AFPlHkgOe65LLVOKsr-yFsf3dU5/view" },
+    { "title": "Протокол засідання атестаційної комісії", "category": "atestatsiia", "year": "", "url": "https://drive.google.com/file/d/17Jx3Y0yjUoeLGbqYghaJPHpLhZRFCUB6/view" },
+    { "title": "План роботи атестаційної комісії", "category": "atestatsiia", "year": "", "url": "https://docs.google.com/document/d/1H1810LPxwuGaR5YKwZSKa67DTrSMS5FN/edit" },
+    { "title": "Графік засідань атестаційної комісії", "category": "atestatsiia", "year": "", "url": "https://docs.google.com/document/d/1WvAPzJt-ZDVVwLzSzyoMYGNOMsMsHCk1/edit" },
+    { "title": "Атестація (додаток)", "category": "atestatsiia", "year": "", "url": "https://drive.google.com/file/d/1o8alMIXIrE8nNoVI5LwC5MfG2AQCNdvH/view" },
+
+    { "title": "Результати вибору підручників для 4 класу", "category": "pidruchnyky", "year": "2026", "url": "https://drive.google.com/file/d/13AqXarE3h4TpurgwttCMxG-clvUQ-SXk/view" },
+    { "title": "Результати вибору підручників для 6 класу", "category": "pidruchnyky", "year": "2026", "url": "https://drive.google.com/file/d/1T76m9bUu9ArR24JBSyodQpO9BeCrO2-z/view" },
+    { "title": "Результати вибору підручників для 7 класу", "category": "pidruchnyky", "year": "2026", "url": "https://drive.google.com/file/d/1JomD_yqZdFzmdZ_lR4uW-0sYWKdh6Inl/view" },
+    { "title": "Результати вибору підручників для 9 класу", "category": "pidruchnyky", "year": "2026", "url": "https://drive.google.com/file/d/1YUh75r_W9ontRNHNtOyVynRwUz508P8W/view" },
+    { "title": "Протокол засідання педагогічної ради (вибір підручників)", "category": "pidruchnyky", "year": "2026", "url": "https://drive.google.com/file/d/1cShhMYiv7I5A2_OuKBdEJCNV81cm4UFv/view" },
+    { "title": "Результати вибору підручників для 1 класу", "category": "pidruchnyky", "year": "2025", "url": "https://drive.google.com/file/d/1ZxnkoratGIJv1BjotsWR-Fom8Ip8rW6f/view" },
+    { "title": "Результати вибору підручників для 2 класу", "category": "pidruchnyky", "year": "2025", "url": "https://drive.google.com/file/d/1YRiB9gg3fNhbTBuTtaIeXjDeicVYuoCr/view" },
+    { "title": "Результати вибору підручників для 8 класу", "category": "pidruchnyky", "year": "2025", "url": "https://drive.google.com/file/d/12FGPx5eGzkOoNWFS0D95p9aPNrVmsQgF/view" },
+    { "title": "Протокол засідання педагогічної ради (1–2 класи)", "category": "pidruchnyky", "year": "2025", "url": "https://docs.google.com/document/d/1bmT92JhrSPt2pAJ2hfQsubUDYU-zH0qe/edit" },
+    { "title": "Протокол засідання педагогічної ради (8 клас)", "category": "pidruchnyky", "year": "2025", "url": "https://docs.google.com/document/d/1IsQ2XUcevoS2SyNyhyk6-PSSQMpoqs4W/edit" },
+    { "title": "Результати вибору підручників для 11 класу (історія)", "category": "pidruchnyky", "year": "", "url": "https://drive.google.com/file/d/1h3Mv1eZFAj1ugZ1UPrQDllkBgMAHiHXK/view" },
+    { "title": "Протокол засідання педагогічної ради № 12 (11 клас, історія)", "category": "pidruchnyky", "year": "", "url": "https://docs.google.com/document/d/18mMeP4tUpA5Wbxe1M8Tn1nPm-behLIID/edit" },
+    { "title": "Протокол засідання педагогічної ради № 10 (11 клас)", "category": "pidruchnyky", "year": "", "url": "https://docs.google.com/document/d/12kGvvGBa1qwFefYdObNePBto0c0O_VN3/edit" },
+    { "title": "Протокол засідання педагогічної ради № 9 (7 клас)", "category": "pidruchnyky", "year": "", "url": "https://docs.google.com/document/d/1hVW7aHSjm4kVNeIkofvJQhB7KkEdm86z/edit" },
+    { "title": "Результати вибору підручників для 2 класу (30.01.2024)", "category": "pidruchnyky", "year": "2024", "url": "https://drive.google.com/file/d/1CrhSTOhMoUG-BW2cGa35jn-E-QONp_r6/view" },
+    { "title": "Результати вибору підручників для 1 класу (02.10.2023)", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/17zD2QYYbfkEMOfGPMY6Pr41ygkJdy7ip/view" },
+    { "title": "Протокол засідання педагогічної ради (1 клас, 02.10.2023)", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/1ghzGujoTcic3PDpgx5YEHuYjqCZ0WHml/view" },
+    { "title": "Результати вибору підручників для 1 класу", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/1cS1aDRo6suLTp5hBkLDezGH6WP2a-_hA/view" },
+    { "title": "Протокол засідання педагогічної ради (1 клас)", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/1yD5mp_DEV7M5p394vPt5Z30sHEuilMGN/view" },
+    { "title": "Результати вибору підручників для 5–6 класів", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/1Yn1lTElDSbfWc6R_RXa3PQYRQJ9uaf5V/view" },
+    { "title": "Протокол засідання педагогічної ради (5–6 класи)", "category": "pidruchnyky", "year": "2023", "url": "https://docs.google.com/document/d/1mDOmvWCzW9CzyXAF_oS3VyF-3A5umsbA/edit" },
+    { "title": "Результати вибору підручників для 10 класу", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/1JshpeBv1JFJ39fp_OHgNRWi1-krt1idI/view" },
+    { "title": "Результати повторного вибору підручників для 10 класу", "category": "pidruchnyky", "year": "2023", "url": "https://drive.google.com/file/d/1uHTbJ7slJwlkUTHWiV6Pvziq-h45Nczr/view" },
+    { "title": "Протокол засідання педагогічної ради (10 клас)", "category": "pidruchnyky", "year": "2023", "url": "https://docs.google.com/document/d/1XnkCdeT65XbeoBvu6vysXczHQUN9vHwa/edit" },
+
+    { "title": "План заходів, спрямованих на запобігання та протидію булінгу", "category": "bezpeka", "year": "", "url": "https://docs.google.com/document/d/1XHX_Uul_KuYABAtDY_UQ36HJW_RqJHMa/edit" },
+    { "title": "Порядок подання та розгляду заяв про булінг", "category": "bezpeka", "year": "", "url": "https://docs.google.com/document/d/1Vtm6GO1Zr4HnxVa4C9k9vlKKeAfX9SB_/edit" },
+    { "title": "Порядок реагування на випадки булінгу", "category": "bezpeka", "year": "", "url": "https://drive.google.com/open?id=1k9G_Dxlgd2agsE9WsT72k3DjhZuXhbzN" },
+    { "title": "Зразок заяви про випадок булінгу", "category": "bezpeka", "year": "", "url": "https://drive.google.com/open?id=13uICPJWeGXVbBA0ebNhy2S4m1_AgSqQT" },
+    { "title": "Правила поведінки здобувачів освіти", "category": "bezpeka", "year": "", "url": "https://docs.google.com/document/d/1nrPrSQjJY_ZBBv1S94Un7Db-8HYAOhuH/edit" },
+    { "title": "Телефони довіри", "category": "bezpeka", "year": "", "url": "https://drive.google.com/file/d/169g17Sc8xPuSEfmjVzmqzzLheBdXERz8/view" },
+
+    { "title": "Заява про зарахування до 1 класу", "category": "batkam", "year": "", "url": "https://docs.google.com/document/d/1GuK8ILwYSZB4DA1ASg7WInA58Hyw3HRT/edit" },
+    { "title": "Рекомендації батькам", "category": "batkam", "year": "", "url": "https://docs.google.com/document/d/1k9K1KIjmOuBkX16ockYPS3XiN8CcI5V1/edit" }
+  ]
+}
