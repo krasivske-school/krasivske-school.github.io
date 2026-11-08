@@ -55,9 +55,10 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
       <div class="foot__col">
         <b>{site.fullName}</b>
         <span>{site.contacts.address}</span>
+        {site.edrpou && <span class="muted">Код ЄДРПОУ: {site.edrpou}</span>}
       </div>
       <div class="foot__col">
-        <span>Телефон: {site.contacts.phone}</span>
+        <span>Телефон: {site.contacts.phone}{site.contacts.phoneNote && ` (${site.contacts.phoneNote})`}</span>
         {site.contacts.email && <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a>}
         {site.contacts.facebook && <a href={site.contacts.facebook}>Facebook</a>}
       </div>

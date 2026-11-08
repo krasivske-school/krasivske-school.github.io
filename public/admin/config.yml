@@ -134,6 +134,8 @@ collections:
           - { name: fullName, label: Повна назва, widget: string }
           - { name: tagline, label: Підпис над назвою на головній, widget: string }
           - { name: about, label: Про заклад (абзац на головній), widget: text }
+          - { name: edrpou, label: Код ЄДРПОУ, widget: string, required: false }
+          - { name: enrollUrl, label: Посилання на електронний запис до 1 класу, widget: string, required: false }
           - name: facts
             label: Цифри на головній
             widget: list
@@ -147,7 +149,7 @@ collections:
             fields:
               - { name: address, label: Адреса, widget: string }
               - { name: phone, label: Телефон, widget: string }
-              - { name: phoneNote, label: Чий телефон, widget: string, required: false }
+              - { name: phoneNote, label: Чий телефон (посада і ПІБ), widget: string, required: false }
               - { name: email, label: E-mail, widget: string, required: false }
               - { name: facebook, label: Посилання на Facebook, widget: string, required: false }
               - { name: mapUrl, label: Посилання на мапу, widget: string, required: false }

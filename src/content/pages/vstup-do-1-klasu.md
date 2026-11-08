@@ -6,6 +6,8 @@ order: 10
 description: "Документи для зарахування, заява і поради, як підготувати дитину до школи."
 ---
 
+**Електронна реєстрація до 1 класу:** [school.isuo.org — Красівський ліцей](https://school.isuo.org/school/view?id=3331)
+
 ![](https://i.ibb.co/NDmGFff/59-1-page-0001.jpg)![](https://i.ibb.co/C3TzGgBv/59-1-page-0002.jpg)
 
 ПРАВИЛА ПРИЙОМУ

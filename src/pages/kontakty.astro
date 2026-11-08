@@ -19,6 +19,7 @@ const c = site.contacts;
         <p class="muted">{c.phoneNote}</p>
         {c.email && (<><span class="label">E-mail</span><p class="big"><a href={`mailto:${c.email}`}>{c.email}</a></p></>)}
         {c.facebook && <p><a href={c.facebook}>Сторінка у Facebook</a></p>}
+        {site.edrpou && <p class="muted">Код ЄДРПОУ: {site.edrpou}</p>}
       </div>
     </div>
 
@@ -36,7 +37,9 @@ const c = site.contacts;
 </Base>
 
 <style>
-  .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+  .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .box > * { min-width: 0; overflow-wrap: anywhere; }
+  h2 { margin-top: 24px; }
   .hot { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
   .box { background: var(--bg-soft); border-radius: var(--radius); padding: 32px; display: grid; gap: 10px; align-content: start; }
   .box--dark { background: var(--ink); color: var(--bg); }

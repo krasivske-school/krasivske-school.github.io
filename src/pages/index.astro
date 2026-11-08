@@ -65,7 +65,8 @@ const quick = [
       <div class="contact__box">
         <h2>Зв’язатися з нами</h2>
         <p>{site.contacts.address}</p>
-        <p class="contact__phone">{site.contacts.phone} <span class="muted">· {site.contacts.phoneNote}</span></p>
+        <p class="contact__phone">{site.contacts.phone}</p>
+        {site.contacts.phoneNote && <p class="muted contact__who">{site.contacts.phoneNote}</p>}
         <a class="btn" href={url('/kontakty/')}>Усі контакти</a>
       </div>
       <div class="contact__box contact__box--soft">
@@ -100,6 +101,7 @@ const quick = [
   .contact__box .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); justify-self: start; margin-top: 8px; }
   .contact__box .muted { color: color-mix(in srgb, var(--bg) 65%, var(--ink)); }
   .contact__phone { font-size: 24px; font-weight: 800; }
+  .contact__who { margin-top: -10px; }
   .contact__box--soft { background: var(--bg-soft); color: var(--ink); }
   .contact__box ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .contact__box li { display: grid; }
