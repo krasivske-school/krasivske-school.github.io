@@ -8,14 +8,23 @@ import { url } from '../../lib/nav';
 const textPages = (await getCollection('pages', ({ data }) => data.section === 'dokumenty'))
   .sort((a, b) => a.data.order - b.data.order);
 
+// У документа може бути завантажений файл (file) або посилання (url). Файл має пріоритет.
+type Doc = { title: string; category: string; year?: string; url?: string; file?: string };
+const docs = (data.documents as Doc[])
+  .map((d) => ({ ...d, href: (d.file || d.url || '').trim() }))
+  .filter((d) => d.href);
+
 const groups = data.categories
-  .map((c) => ({ ...c, docs: data.documents.filter((d) => d.category === c.id) }))
+  .map((c) => ({ ...c, docs: docs.filter((d) => d.category === c.id) }))
   .filter((g) => g.docs.length > 0);
 
 function kind(u: string) {
   if (u.includes('docs.google.com')) return 'Google Docs';
   if (u.includes('drive.google.com')) return 'Google Drive';
-  if (u.toLowerCase().endsWith('.pdf')) return 'PDF';
+  const ext = u.split('?')[0].split('.').pop()?.toLowerCase();
+  if (ext === 'pdf') return 'PDF';
+  if (ext === 'doc' || ext === 'docx') return 'Word';
+  if (ext === 'xls' || ext === 'xlsx') return 'Excel';
   return 'Файл';
 }
 ---
@@ -39,10 +48,10 @@ function kind(u: string) {
         <ul class="docs">
           {g.docs.map((d) => (
             <li data-doc data-text={d.title.toLowerCase()}>
-              <a href={d.url.startsWith('/') ? url(d.url) : d.url} target="_blank" rel="noopener">
+              <a href={d.href.startsWith('/') ? url(d.href) : d.href} target="_blank" rel="noopener">
                 <svg class="docs__icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M6 2h8l6 6v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v6h6M9 13h8M9 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                 <span class="docs__title">{d.title}</span>
-                <span class="docs__meta">{d.year && <b>{d.year}</b>}<span>{kind(d.url)}</span></span>
+                <span class="docs__meta">{d.year && <b>{d.year}</b>}<span>{kind(d.href)}</span></span>
               </a>
             </li>
           ))}

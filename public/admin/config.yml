@@ -1,0 +1,170 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Адмінка сайту (Sveltia CMS). Відкривається на /admin/.
+# Вхід: «Sign In with Token» — токен GitHub з доступом Contents: Read and write до репозиторію.
+
+backend:
+  name: github
+  repo: krasivske-school/krasivske-school.github.io
+  branch: main
+
+media_folder: /public/uploads
+public_folder: /uploads
+
+# Фото з телефона автоматично зменшуються (до 1920 px) і стискаються у WebP перед завантаженням.
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1920
+          height: 1920
+
+collections:
+  - name: news
+    label: Новини
+    label_singular: Новина
+    folder: /src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}"
+    summary: "{{date}} — {{title}}"
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: date, label: Дата, widget: datetime, type: date }
+      - name: cover
+        label: Головне фото (на картці новини)
+        widget: image
+        required: false
+      - name: gallery
+        label: Фотогалерея — виділіть або перетягніть одразу всі фото
+        widget: image
+        multiple: true
+        required: false
+      - name: draft
+        label: Чернетка (не показувати на сайті)
+        widget: boolean
+        default: false
+        required: false
+      - { name: body, label: Текст новини, widget: markdown, required: false }
+
+  - name: pages
+    label: Сторінки
+    label_singular: Сторінка
+    folder: /src/content/pages
+    create: true
+    summary: "{{title}}"
+    fields:
+      - { name: title, label: Назва, widget: string }
+      - name: section
+        label: Розділ
+        widget: select
+        options:
+          - { value: pro-nas, label: Про нас }
+          - { value: batkam, label: Батькам }
+          - { value: dokumenty, label: Документи }
+          - { value: novyny, label: Новини }
+      - name: group
+        label: Підрозділ (наприклад «Вступ», «Безпека»)
+        widget: string
+        required: false
+      - name: order
+        label: Порядок у списку (менше число — вище)
+        widget: number
+        value_type: int
+        default: 100
+        required: false
+      - { name: description, label: Короткий опис, widget: text, required: false }
+      - { name: body, label: Текст сторінки, widget: markdown, required: false }
+
+  - name: data
+    label: Документи і контакти
+    files:
+      - name: documents
+        label: Документи
+        file: /src/data/documents.json
+        fields:
+          - name: documents
+            label: Документи
+            label_singular: документ
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Назва документа, widget: string }
+              - name: category
+                label: Категорія
+                widget: select
+                options:
+                  - { value: ustanovchi, label: Установчі документи }
+                  - { value: litsenzuvannia, label: Ліцензування }
+                  - { value: osvitni-prohramy, label: Освітні програми }
+                  - { value: zvitnist, label: Звітність і фінанси }
+                  - { value: atestatsiia, label: Атестація педагогів }
+                  - { value: pidruchnyky, label: Вибір підручників }
+                  - { value: bezpeka, label: Безпека і протидія булінгу }
+                  - { value: batkam, label: Для батьків }
+              - { name: year, label: Рік, widget: string, required: false }
+              - name: file
+                label: Файл (PDF, Word) — завантажте сюди
+                widget: file
+                required: false
+              - name: url
+                label: Або посилання (Google Drive тощо)
+                widget: string
+                required: false
+          - name: categories
+            label: Категорії
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: id, label: Код, widget: string }
+              - { name: title, label: Назва, widget: string }
+
+      - name: site
+        label: Контакти і загальна інформація
+        file: /src/data/site.json
+        fields:
+          - { name: name, label: Коротка назва, widget: string }
+          - { name: fullName, label: Повна назва, widget: string }
+          - { name: tagline, label: Підпис над назвою на головній, widget: string }
+          - { name: about, label: Про заклад (абзац на головній), widget: text }
+          - name: facts
+            label: Цифри на головній
+            widget: list
+            summary: "{{fields.value}} {{fields.label}}"
+            fields:
+              - { name: value, label: Значення, widget: string }
+              - { name: label, label: Підпис, widget: string }
+          - name: contacts
+            label: Контакти
+            widget: object
+            fields:
+              - { name: address, label: Адреса, widget: string }
+              - { name: phone, label: Телефон, widget: string }
+              - { name: phoneNote, label: Чий телефон, widget: string, required: false }
+              - { name: email, label: E-mail, widget: string, required: false }
+              - { name: facebook, label: Посилання на Facebook, widget: string, required: false }
+              - { name: mapUrl, label: Посилання на мапу, widget: string, required: false }
+          - name: hotlines
+            label: Телефони довіри
+            widget: list
+            summary: "{{fields.phone}} — {{fields.name}}"
+            fields:
+              - { name: name, label: Назва, widget: string }
+              - { name: phone, label: Телефон, widget: string }
+              - { name: note, label: Примітка, widget: string, required: false }
+          - name: administration
+            label: Адміністрація
+            widget: list
+            summary: "{{fields.role}}: {{fields.name}}"
+            fields:
+              - { name: role, label: Посада, widget: string }
+              - { name: name, label: ПІБ, widget: string }
+              - { name: details, label: Відомості (по одному рядку), widget: list, required: false }
+              - { name: phone, label: Телефон, widget: string, required: false }
