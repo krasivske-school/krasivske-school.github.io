@@ -22,8 +22,31 @@ function prefixUploads() {
   return (tree) => walk(tree);
 }
 
+// Посилання на інші сайти (Google Drive, Docs тощо) і на файли (PDF, Word, Excel)
+// у текстах сторінок і новин відкриваються в новій вкладці.
+const ownHost = 'krasivske-school.github.io';
+function linksInNewTab() {
+  const isFile = (h) => /\.(pdf|docx?|xlsx?|pptx?|odt|ods|zip|rar)(\?|#|$)/i.test(h);
+  const isExternal = (h) => /^https?:\/\//i.test(h) && !h.includes(ownHost);
+  const walk = (node) => {
+    if (node.type === 'element' && node.tagName === 'a' && node.properties) {
+      const h = String(node.properties.href ?? '');
+      if (isExternal(h) || isFile(h)) {
+        node.properties.target = '_blank';
+        node.properties.rel = ['noopener', 'noreferrer'];
+      }
+    }
+    if (node.type === 'raw') {
+      // посилання, записані HTML-кодом прямо в тексті
+      node.value = node.value.replace(/<a\s+(?![^>]*\starget=)([^>]*href="(?:https?:\/\/(?!krasivske-school\.github\.io)[^"]+|[^"]+\.(?:pdf|docx?|xlsx?))"[^>]*)>/gi, '<a target="_blank" rel="noopener noreferrer" $1>');
+    }
+    node.children?.forEach(walk);
+  };
+  return (tree) => walk(tree);
+}
+
 export default defineConfig({
   site: process.env.SITE_URL || 'https://example.github.io',
   base: process.env.BASE_PATH || '/',
-  markdown: { rehypePlugins: [prefixUploads] },
+  markdown: { rehypePlugins: [prefixUploads, linksInNewTab] },
 });
