@@ -133,6 +133,10 @@ collections:
           - { name: name, label: Коротка назва, widget: string }
           - { name: fullName, label: Повна назва, widget: string }
           - { name: tagline, label: Підпис над назвою на головній, widget: string }
+          - name: logo
+            label: Картинка в шапці біля назви (квадратна)
+            widget: image
+            required: false
           - { name: edrpou, label: Код ЄДРПОУ, widget: string, required: false }
           - { name: enrollUrl, label: Посилання на електронний запис до 1 класу, widget: string, required: false }
           - name: facts

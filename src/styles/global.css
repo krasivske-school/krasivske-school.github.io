@@ -22,8 +22,9 @@
   --wrap: 1200px;
   color-scheme: light;
 }
+/* Темна тема: за налаштуванням системи, або коли відвідувач обрав її перемикачем (data-theme). */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #0e0f11;
     --bg-soft: #1b1d21;
     --ink: #ffffff;
@@ -33,6 +34,16 @@
     --grad: linear-gradient(115deg, #17332a 0%, #1d2240 45%, #3a1f2d 100%);
     color-scheme: dark;
   }
+}
+:root[data-theme='dark'] {
+  --bg: #0e0f11;
+  --bg-soft: #1b1d21;
+  --ink: #ffffff;
+  --muted: #a3a8b0;
+  --line: #2c2f35;
+  --link: #8db1ff;
+  --grad: linear-gradient(115deg, #17332a 0%, #1d2240 45%, #3a1f2d 100%);
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

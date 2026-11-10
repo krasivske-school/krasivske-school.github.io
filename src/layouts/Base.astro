@@ -21,13 +21,19 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
+  <script is:inline>
+    // Застосувати збережену тему ще до показу сторінки, щоб не було блимання.
+    try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Перейти до змісту</a>
   <header class="top">
     <div class="wrap top__in">
       <a class="logo" href={url('/')} aria-label={`${site.fullName} — головна`}>
-        <span class="logo__mark" aria-hidden="true">К</span>
+        {site.logo
+          ? <img class="logo__mark" src={site.logo.startsWith('/') ? url(site.logo) : site.logo} alt="" width="44" height="44" />
+          : <span class="logo__mark" aria-hidden="true">{site.name.charAt(0)}</span>}
         <span class="logo__text"><b>{site.name}</b><small>Новопільської сільської ради</small></span>
       </a>
       <nav class="nav" aria-label="Головне меню">
@@ -35,6 +41,11 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
           <a href={url(`/${s.id}/`)} aria-current={current === s.id ? 'page' : undefined}>{s.title}</a>
         ))}
       </nav>
+      <div class="tools">
+      <button class="theme" type="button" aria-label="Перемкнути тему" title="Світла / темна тема">
+        <svg class="theme__sun" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="theme__moon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </button>
       <details class="burger">
         <summary aria-label="Меню"><span></span><span></span><span></span></summary>
         <nav class="burger__menu" aria-label="Мобільне меню">
@@ -43,6 +54,7 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
           ))}
         </nav>
       </details>
+      </div>
     </div>
   </header>
 
@@ -68,6 +80,21 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
     </div>
     <div class="wrap foot__copy">© {new Date().getFullYear()} {site.fullName}</div>
   </footer>
+  <script is:inline>
+    (function () {
+      var btn = document.querySelector('.theme');
+      if (!btn) return;
+      var dark = window.matchMedia('(prefers-color-scheme: dark)');
+      function current() {
+        return document.documentElement.dataset.theme || (dark.matches ? 'dark' : 'light');
+      }
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+  </script>
 </body>
 </html>
 
@@ -79,6 +106,18 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   .top__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
   .logo { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
   .logo__mark { width: 44px; height: 44px; border-radius: 14px; background: var(--ink); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 22px; flex: none; }
+  img.logo__mark { object-fit: cover; background: var(--bg-soft); box-shadow: 0 0 0 1px var(--line); }
+
+  .tools { display: flex; align-items: center; gap: 8px; }
+  .theme { width: 48px; height: 48px; border-radius: 999px; border: 0; background: var(--bg-soft); color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; }
+  .theme:hover { background: var(--line); }
+  .theme__sun { display: none; }
+  :global(:root[data-theme='dark']) .theme__sun { display: block; }
+  :global(:root[data-theme='dark']) .theme__moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .theme__sun { display: block; }
+    :global(:root:not([data-theme='light'])) .theme__moon { display: none; }
+  }
   .logo__text { display: grid; line-height: 1.2; }
   .logo__text b { font-size: 17px; font-weight: 800; }
   .logo__text small { font-size: 13px; color: var(--muted); }
