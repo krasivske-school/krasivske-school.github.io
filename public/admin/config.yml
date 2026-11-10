@@ -152,6 +152,14 @@ collections:
               - { name: email, label: E-mail, widget: string, required: false }
               - { name: facebook, label: Посилання на Facebook, widget: string, required: false }
               - { name: mapUrl, label: Посилання на мапу, widget: string, required: false }
+          - name: support
+            label: Підтримка сайту
+            widget: object
+            required: false
+            fields:
+              - { name: name, label: ПІБ, widget: string }
+              - { name: phone, label: Телефон, widget: string, required: false }
+              - { name: email, label: E-mail, widget: string, required: false }
           - name: hotlines
             label: Телефони довіри
             widget: list

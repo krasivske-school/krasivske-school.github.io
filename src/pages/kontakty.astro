@@ -33,6 +33,18 @@ const c = site.contacts;
         </div>
       ))}
     </div>
+
+    {site.support && (
+      <>
+        <h2>Підтримка сайту</h2>
+        <div class="box support">
+          <p>Помітили помилку на сайті, неробоче посилання чи застарілу інформацію? Напишіть або зателефонуйте.</p>
+          <b>{site.support.name}</b>
+          {site.support.phone && <p class="big"><a href={`tel:${site.support.phone.replace(/\s/g, '')}`}>{site.support.phone}</a></p>}
+          {site.support.email && <p class="big"><a href={`mailto:${site.support.email}`}>{site.support.email}</a></p>}
+        </div>
+      </>
+    )}
   </div>
 </Base>
 
@@ -42,6 +54,7 @@ const c = site.contacts;
   h2 { margin-top: 24px; }
   .hot { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
   .box { background: var(--bg-soft); border-radius: var(--radius); padding: 32px; display: grid; gap: 10px; align-content: start; }
+  .support { max-width: 640px; }
   .box--dark { background: var(--ink); color: var(--bg); }
   .box--dark .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); justify-self: start; margin-top: 8px; }
   .label { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
