@@ -121,15 +121,16 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 /* Хлібні крихти */
 .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: 16px; color: var(--muted); padding-top: 24px; }
 .crumbs a { color: var(--muted); }
-/* «Головна» — помітна кнопка-пігулка з будиночком */
+/* «Головна» — прозора кнопка-пігулка з рамкою і будиночком */
 .crumbs a.crumbs__home {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 18px; border-radius: 999px;
-  background: var(--ink); color: var(--bg);
+  padding: 8px 18px; border-radius: 999px;
+  background: transparent; color: var(--ink);
+  border: 2px solid var(--ink);
   font-weight: 600; font-size: 16px; text-decoration: none;
-  transition: opacity .15s;
+  transition: background .15s, color .15s;
 }
-.crumbs a.crumbs__home:hover { opacity: .85; }
+.crumbs a.crumbs__home:hover { background: var(--ink); color: var(--bg); }
 
 /* Текст сторінок */
 .prose { max-width: 760px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
