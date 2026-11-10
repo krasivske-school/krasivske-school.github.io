@@ -142,4 +142,25 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
 .prose td, .prose th { border: 1px solid var(--line); padding: 8px 12px; }
 
+/* Схема «Структура та органи управління»: рівні зверху вниз, зі стрілками між ними. */
+.org { display: grid; gap: 0; }
+.org__tier { display: grid; gap: 12px; }
+.prose .org__label { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.org__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.org__card {
+  flex: 1 1 160px; max-width: 360px; min-width: 0;
+  background: var(--bg-soft); border-radius: var(--radius-sm);
+  padding: 16px 18px; display: grid; gap: 4px; align-content: start; text-align: center;
+}
+.org__card b { font-weight: 700; line-height: 1.3; }
+.org__card span { font-size: 14px; line-height: 1.4; color: var(--muted); }
+.org__card b { overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 560px) { .org__card { flex-basis: 100%; max-width: none; } }
+.org__card--main { background: var(--ink); color: var(--bg); flex-basis: 320px; padding: 22px 24px; }
+.org__card--main b { font-size: 22px; }
+.org__card--main span { color: color-mix(in srgb, var(--bg) 70%, var(--ink)); }
+.org__arrow { height: 40px; position: relative; }
+.org__arrow::before { content: ''; position: absolute; left: 50%; top: 6px; bottom: 6px; width: 2px; translate: -1px 0; background: var(--line); }
+.org__arrow::after { content: ''; position: absolute; left: 50%; bottom: 6px; width: 10px; height: 10px; translate: -5px 0; border-right: 2px solid var(--line); border-bottom: 2px solid var(--line); rotate: 45deg; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
