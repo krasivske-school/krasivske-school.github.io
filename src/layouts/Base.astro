@@ -8,7 +8,7 @@ interface Props {
   description?: string;
   current?: string;
 }
-const { title, description = site.about, current } = Astro.props;
+const { title, description = `${site.fullName} — ${site.tagline}`, current } = Astro.props;
 const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
 ---
 <!doctype html>

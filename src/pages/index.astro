@@ -22,10 +22,10 @@ const quick = [
       <div class="hero__text">
         <span class="eyebrow">{site.tagline}</span>
         <h1>{site.fullName}</h1>
-        <p class="hero__lead">{site.about}</p>
         <div class="hero__btns">
           <a class="btn" href={url('/pro-nas/')}>Про нас</a>
           <a class="btn btn--ghost" href={url('/kontakty/')}>Контакти</a>
+          {site.contacts.facebook && <a class="btn btn--ghost" href={site.contacts.facebook} target="_blank" rel="noopener">Ми у Facebook</a>}
         </div>
       </div>
       <dl class="facts">
@@ -37,6 +37,10 @@ const quick = [
   </section>
 
   <div class="wrap">
+    <figure class="photo">
+      <img src={url('/uploads/shkola.jpg')} alt="Будівля Красівського ліцею восени" width="1600" height="879" />
+    </figure>
+
     <section class="section">
       <h2>Швидкий доступ</h2>
       <div class="cards">
@@ -85,7 +89,8 @@ const quick = [
   .hero { background: var(--grad); }
   .hero__in { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: end; padding-block: 72px; }
   .hero__text { display: grid; gap: 20px; min-width: 0; }
-  .hero__lead { font-size: 19px; max-width: 60ch; }
+  .photo { margin: 32px 0 0; }
+  .photo img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 879; object-fit: cover; border-radius: var(--radius); }
   .hero__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
   .facts { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .facts div { background: var(--bg); border-radius: var(--radius); padding: 22px; display: grid; gap: 4px; }
