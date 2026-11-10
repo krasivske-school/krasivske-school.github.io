@@ -24,17 +24,6 @@ const c = site.contacts;
       </div>
     </div>
 
-    <h2>Телефони довіри</h2>
-    <div class="hot">
-      {site.hotlines.map((h) => (
-        <div class="box">
-          <p class="big">{h.phone}</p>
-          <b>{h.name}</b>
-          <span class="muted">{h.note}</span>
-        </div>
-      ))}
-    </div>
-
     {site.support && (
       <>
         <h2>Підтримка сайту</h2>
@@ -46,6 +35,17 @@ const c = site.contacts;
         </div>
       </>
     )}
+
+    <h2>Телефони довіри</h2>
+    <div class="hot">
+      {site.hotlines.map((h) => (
+        <div class="box">
+          <p class="big">{h.phone}</p>
+          <b>{h.name}</b>
+          <span class="muted">{h.note}</span>
+        </div>
+      ))}
+    </div>
   </div>
 </Base>
 
