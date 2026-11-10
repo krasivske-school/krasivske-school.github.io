@@ -80,6 +80,23 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
     </div>
     <div class="wrap foot__copy">© {new Date().getFullYear()} {site.fullName}</div>
   </footer>
+  <button class="totop" type="button" aria-label="Вгору сторінки" title="Вгору">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <script is:inline>
+    // Кнопка «вгору»: з'являється, коли прогорнули ~1,5 екрана.
+    (function () {
+      var btn = document.querySelector('.totop');
+      if (!btn) return;
+      function update() { btn.classList.toggle('totop--on', window.scrollY > window.innerHeight * 1.5); }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+      btn.addEventListener('click', function () {
+        var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
+      });
+    })();
+  </script>
   <script is:inline>
     (function () {
       var btn = document.querySelector('.theme');
@@ -111,6 +128,19 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   .tools { display: flex; align-items: center; gap: 8px; }
   .theme { width: 48px; height: 48px; border-radius: 999px; border: 0; background: var(--bg-soft); color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; }
   .theme:hover { background: var(--line); }
+
+  .totop {
+    position: fixed; z-index: 30;
+    right: max(16px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom));
+    width: 52px; height: 52px; border-radius: 999px; border: 0;
+    background: var(--ink); color: var(--bg);
+    display: grid; place-items: center; cursor: pointer;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,.45);
+    opacity: 0; visibility: hidden; transform: translateY(12px);
+    transition: opacity .2s, transform .2s, visibility .2s;
+  }
+  .totop--on { opacity: 1; visibility: visible; transform: none; }
+  .totop:hover { opacity: .85; }
   .theme__sun { display: none; }
   :global(:root[data-theme='dark']) .theme__sun { display: block; }
   :global(:root[data-theme='dark']) .theme__moon { display: none; }
