@@ -67,10 +67,10 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
       <div class="foot__col">
         <b>{site.fullName}</b>
         <span>{site.contacts.address}</span>
-        {site.edrpou && <span class="muted">Код ЄДРПОУ: {site.edrpou}</span>}
+        {site.edrpou && <span>Код ЄДРПОУ: {site.edrpou}</span>}
       </div>
       <div class="foot__col">
-        <span class="foot__phone"><span>Телефон: {site.contacts.phone}</span>{site.contacts.phoneNote && <span class="muted">{site.contacts.phoneNote.charAt(0).toUpperCase() + site.contacts.phoneNote.slice(1)}</span>}</span>
+        <span class="foot__phone"><span>Телефон: {site.contacts.phone}</span>{site.contacts.phoneNote && <span class="foot__who">{site.contacts.phoneNote.charAt(0).toUpperCase() + site.contacts.phoneNote.slice(1)}</span>}</span>
         {site.contacts.email && <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a>}
         {site.contacts.facebook && <a href={site.contacts.facebook}>Facebook</a>}
       </div>
@@ -143,8 +143,7 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   .foot__col { display: grid; gap: 8px; align-content: start; min-width: 0; }
   .foot__col a { color: var(--ink); }
   .foot__phone { display: grid; }
-  .foot__phone .muted { font-size: 14px; }
-  @media (min-width: 761px) { .foot__phone .muted { white-space: nowrap; } }
+  @media (min-width: 761px) { .foot__who { white-space: nowrap; } }
   .foot__copy { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   @media (max-width: 760px) { .foot__in { grid-template-columns: 1fr; } }
 </style>
