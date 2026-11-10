@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import site from '../data/site.json';
+import CopyButton from '../components/CopyButton.astro';
 const c = site.contacts;
 ---
 <Base title="Контакти" description="Адреса, телефони і телефони довіри." current="kontakty">
@@ -15,10 +16,10 @@ const c = site.contacts;
       </div>
       <div class="box">
         <span class="label">Телефон</span>
-        <p class="big">{c.phone}</p>
+        <p class="big"><a class="clink" href={`tel:${c.phone.replace(/\s/g, '')}`}>{c.phone}</a></p>
         <p class="muted">{c.phoneNote}</p>
-        {c.email && (<><span class="label">E-mail</span><p class="big"><a href={`mailto:${c.email}`}>{c.email}</a></p></>)}
-        {c.facebook && <p><a href={c.facebook}>Сторінка у Facebook</a></p>}
+        {c.email && (<><span class="label">E-mail</span><p class="big row"><a class="clink" href={`mailto:${c.email}`}>{c.email}</a><CopyButton text={c.email} label="Скопіювати e-mail" /></p></>)}
+        {c.facebook && <p><a class="clink" href={c.facebook} target="_blank" rel="noopener">Сторінка у Facebook</a></p>}
         {site.edrpou && <p class="muted">Код ЄДРПОУ: {site.edrpou}</p>}
       </div>
     </div>
@@ -40,8 +41,8 @@ const c = site.contacts;
         <div class="box support">
           <p>Помітили помилку на сайті, неробоче посилання чи застарілу інформацію? Напишіть або зателефонуйте.</p>
           <b>{site.support.name}</b>
-          {site.support.phone && <p class="big"><a href={`tel:${site.support.phone.replace(/\s/g, '')}`}>{site.support.phone}</a></p>}
-          {site.support.email && <p class="big"><a href={`mailto:${site.support.email}`}>{site.support.email}</a></p>}
+          {site.support.phone && <p class="big"><a class="clink" href={`tel:${site.support.phone.replace(/\s/g, '')}`}>{site.support.phone}</a></p>}
+          {site.support.email && <p class="big row"><a class="clink" href={`mailto:${site.support.email}`}>{site.support.email}</a><CopyButton text={site.support.email} label="Скопіювати e-mail" /></p>}
         </div>
       </>
     )}
@@ -59,5 +60,9 @@ const c = site.contacts;
   .box--dark .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); justify-self: start; margin-top: 8px; }
   .label { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
   .big { font-size: 24px; font-weight: 800; line-height: 1.3; }
+  .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  /* Посилання в контактах: колір тексту і тонке підкреслення замість синього. */
+  .clink { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 30%, transparent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .clink:hover { text-decoration-color: currentColor; }
   @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
 </style>

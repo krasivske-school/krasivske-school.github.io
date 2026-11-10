@@ -1,0 +1,37 @@
+---
+// Кругла кнопка «Скопіювати» поруч із e-mail чи телефоном.
+interface Props { text: string; label?: string }
+const { text, label = 'Скопіювати' } = Astro.props;
+---
+<button class="copy" type="button" data-copy={text} aria-label={label} title={label}>
+  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button.copy[data-copy]').forEach((b) => {
+    if (b.dataset.bound) return;
+    b.dataset.bound = '1';
+    b.addEventListener('click', async () => {
+      const text = b.dataset.copy!;
+      let ok = false;
+      try { await navigator.clipboard.writeText(text); ok = true; } catch {}
+      if (!ok) {
+        // запасний спосіб для старих браузерів і вбудованих переглядачів
+        const t = document.createElement('textarea');
+        t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.select();
+        try { ok = document.execCommand('copy'); } catch {}
+        t.remove();
+      }
+      if (!ok) return;
+      b.classList.add('done');
+      setTimeout(() => b.classList.remove('done'), 1500);
+    });
+  });
+</script>
+
+<style>
+  .copy { position: relative; width: 40px; height: 40px; border-radius: 999px; border: 0; background: var(--bg); color: var(--ink); display: inline-grid; place-items: center; cursor: pointer; flex: none; vertical-align: middle; }
+  .copy:hover { background: var(--line); }
+  .copy.done::after { content: 'Скопійовано'; position: absolute; bottom: calc(100% + 6px); left: 50%; translate: -50% 0; background: var(--ink); color: var(--bg); font: 600 13px var(--font); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+</style>
