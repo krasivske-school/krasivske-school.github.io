@@ -6,7 +6,7 @@
   "edrpou": "19146574",
   "enrollUrl": "https://school.isuo.org/school/view?id=3331",
   "facts": [
-    { "value": "14", "label": "сіл із підвозом" },
+    { "value": "13", "label": "сіл із підвозом" },
     { "value": "256", "label": "учнів" },
     { "value": "58", "label": "працівників" },
     { "value": "11", "label": "класів" }
