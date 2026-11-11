@@ -22,6 +22,42 @@ function prefixUploads() {
   return (tree) => walk(tree);
 }
 
+// Посилання на YouTube, що стоїть окремим рядком, перетворюється на вбудований плеєр.
+// Так відео можна додати через адмінку: просто вставити посилання з кнопки «Поділитися».
+function youtubeId(href) {
+  const m = String(href).trim().match(
+    /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/i,
+  );
+  return m ? m[1] : null;
+}
+function youtubeEmbeds() {
+  const isBlank = (n) => n.type === 'text' && !n.value.trim();
+  const walk = (node) => {
+    if (node.type === 'element' && node.tagName === 'p') {
+      const kids = (node.children ?? []).filter((n) => !isBlank(n));
+      if (kids.length === 1) {
+        const k = kids[0];
+        const href = k.type === 'element' && k.tagName === 'a' ? k.properties?.href : k.type === 'text' ? k.value : null;
+        const id = href && youtubeId(href);
+        if (id) {
+          node.tagName = 'div';
+          node.properties = { className: ['video'] };
+          node.children = [{
+            type: 'element', tagName: 'iframe', children: [],
+            properties: {
+              src: `https://www.youtube.com/embed/${id}`, loading: 'lazy', allowFullScreen: true, title: 'Відео',
+              allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+            },
+          }];
+          return;
+        }
+      }
+    }
+    node.children?.forEach(walk);
+  };
+  return (tree) => walk(tree);
+}
+
 // Посилання на інші сайти (Google Drive, Docs тощо) і на файли (PDF, Word, Excel)
 // у текстах сторінок і новин відкриваються в новій вкладці.
 const ownHost = 'krasivske-school.github.io';
@@ -48,5 +84,5 @@ function linksInNewTab() {
 export default defineConfig({
   site: process.env.SITE_URL || 'https://example.github.io',
   base: process.env.BASE_PATH || '/',
-  markdown: { rehypePlugins: [prefixUploads, linksInNewTab] },
+  markdown: { rehypePlugins: [youtubeEmbeds, prefixUploads, linksInNewTab] },
 });
