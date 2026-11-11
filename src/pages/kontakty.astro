@@ -26,10 +26,11 @@ const c = site.contacts;
 
     {site.support && (
       <>
-        <h2>Підтримка сайту</h2>
+        <h2>Розробка та підтримка сайту</h2>
         <div class="box support">
-          <p>Помітили помилку на сайті, неробоче посилання чи застарілу інформацію? Напишіть або зателефонуйте.</p>
-          <b>{site.support.name}</b>
+          <span class="label">Автор сайту</span>
+          <b class="big">{site.support.name}</b>
+          <p>Створив і підтримує цей сайт. Помітили помилку, неробоче посилання чи застарілу інформацію? Напишіть або зателефонуйте.</p>
           {site.support.phone && <p class="big"><a class="clink" href={`tel:${site.support.phone.replace(/\s/g, '')}`}>{site.support.phone}</a></p>}
           {site.support.email && <p class="big row"><a class="clink" href={`mailto:${site.support.email}`}>{site.support.email}</a><CopyButton text={site.support.email} label="Скопіювати e-mail" /></p>}
         </div>
