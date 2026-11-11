@@ -1,13 +1,16 @@
 ---
-section: "pro-nas"
-title: "Історія школи"
+title: Історія школи
+section: pro-nas
+group: ''
 order: 10
-description: "Від початкової школи 1927 року до сьогодення."
+description: Від початкової школи 1927 року до сьогодення.
 ---
 
 ![Будівля школи](https://krasine_school.klasna.com/uploads/editor/3126/100213/sitepage_7/shkola_1_.jpg)
 
 Красінська початкова школа відкрилася в 1927 році. Навчання велося єврейською мовою, тому що з 13 сіл, які входили до Ленінської сільської ради (нині — Красінської), 11 були заселені євреями. Села входили до Сталіндорфського району.
+
+\<div class="video">\<iframe src="[https://www.youtube.com/embed/ydMgA7_ZWpo](https://www.youtube.com/watch?v=N6MalNKc3rE)" loading="lazy" allowfullscreen title="Історія школи">\</iframe>\</div>
 
 У 1932 році відкрили семирічну школу, а в 1939 році школа отримала статус середньої.
 
@@ -25,10 +28,11 @@ description: "Від початкової школи 1927 року до сьог
 
 Сьогодні в школі навчається 181 учень, педагогічний колектив налічує 21 вчителя.
 
-*Історія школи взята з матеріалів Мєшкової Клавдії Миколаївни.*
+_Історія школи взята з матеріалів Мєшкової Клавдії Миколаївни._
 
 ## Наш герб
 
 ![Герб ліцею](https://krasine_school.klasna.com/uploads/editor/3126/622169/sitepage_7/images/1.png)
 
-![](https://krasine_school.klasna.com/uploads/editor/3126/100213/sitepage_7/images/stitched_001e.jpg)
+```plain
+```
