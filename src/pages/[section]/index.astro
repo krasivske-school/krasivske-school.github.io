@@ -25,16 +25,19 @@ const items = [
 ].sort((a, b) => a.order - b.order);
 
 const groups = [...new Set(items.map((i) => i.group ?? ''))];
+// Плитки як на головній (сіре тло, білі плитки, перша фіолетова).
+const tiles = true;
 ---
 <Base title={meta.title} description={meta.description} current={section}>
   <PageHead title={meta.title} lead={meta.description} />
+  <div class:list={[tiles && 'tiles']}>
   <div class="wrap">
-    {groups.map((g) => (
+    {groups.map((g, gi) => (
       <section class="section">
         {g && <h2>{g}</h2>}
         <div class="cards">
-          {items.filter((i) => (i.group ?? '') === g).map((i) => (
-            <a class="card" href={url(`/${section}/${i.id}/`)}>
+          {items.filter((i) => (i.group ?? '') === g).map((i, n) => (
+            <a class:list={['card', tiles && gi === 0 && n === 0 && 'card--violet']} href={url(`/${section}/${i.id}/`)}>
               <h3>{i.title}</h3>
               {i.description && <p>{i.description}</p>}
               <span class="arrow" aria-hidden="true">→</span>
@@ -44,4 +47,13 @@ const groups = [...new Set(items.map((i) => i.group ?? ''))];
       </section>
     ))}
   </div>
+  </div>
 </Base>
+
+<style>
+  .tiles { background: var(--bg-soft); }
+  .tiles .card { background: var(--bg); border-radius: 28px; padding: 28px; min-height: 180px; transition: transform .15s; }
+  .tiles .card:hover { background: var(--bg); transform: translateY(-3px); }
+  .tiles .card--violet, .tiles .card--violet:hover { background: var(--violet-soft); color: var(--violet-ink); }
+  .tiles .card--violet p { color: var(--violet-ink); opacity: .8; }
+</style>

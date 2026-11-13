@@ -12,7 +12,7 @@ const c = site.contacts;
       <div class="box box--dark">
         <span class="label">Адреса</span>
         <p class="big">{c.address}</p>
-        <a class="btn" href={c.mapUrl} target="_blank" rel="noopener">Відкрити на мапі</a>
+        <a class="btn btn--violet" href={c.mapUrl} target="_blank" rel="noopener">Відкрити на мапі</a>
       </div>
       <div class="box">
         <span class="label">Телефон</span>
@@ -42,7 +42,7 @@ const c = site.contacts;
     <div class="hot">
       {site.hotlines.map((h) => (
         <div class="box">
-          <p class="big">{h.phone}</p>
+          <p class="big hot__num">{h.phone}</p>
           <b>{h.name}</b>
           <span class="muted">{h.note}</span>
         </div>
@@ -59,7 +59,8 @@ const c = site.contacts;
   .box { background: var(--bg-soft); border-radius: var(--radius); padding: 32px; display: grid; gap: 10px; align-content: start; }
   .support { max-width: 640px; }
   .box--dark { background: var(--ink); color: var(--bg); }
-  .box--dark .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); justify-self: start; margin-top: 8px; }
+  .box--dark .btn { justify-self: start; margin-top: 8px; }
+  .hot__num { color: var(--violet); }
   .label { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
   .big { font-size: 24px; font-weight: 800; line-height: 1.3; }
   .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
