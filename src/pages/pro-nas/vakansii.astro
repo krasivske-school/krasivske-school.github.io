@@ -2,12 +2,10 @@
 // Вакансії — список береться з site.json (поле vacancies), редагується в адмінці.
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
-import CopyButton from '../../components/CopyButton.astro';
 import site from '../../data/site.json';
 
 type Vacancy = { position: string; load?: string; note?: string };
 const vacancies = ((site as { vacancies?: Vacancy[] }).vacancies ?? []).filter((v) => v?.position?.trim());
-const c = site.contacts;
 ---
 <Base title="Вакансії" description="Вакансії педагогічних та інших працівників." current="pro-nas">
   <PageHead title="Вакансії" lead="Вільні посади в закладі і як подати заявку." crumbs={[{ title: 'Про нас', href: '/pro-nas/' }]} />
@@ -29,14 +27,6 @@ const c = site.contacts;
         <p>Коли з’явиться вільна посада, ми опублікуємо її на цій сторінці.</p>
       </div>
     )}
-
-    <div class="vac__apply">
-      <h2>{vacancies.length > 0 ? 'Як подати заявку' : 'Хочете працювати в нашому закладі?'}</h2>
-      <p>Надішліть резюме на e-mail або зателефонуйте — розкажемо про умови.</p>
-      {c.email && <p class="vac__big row"><a class="clink" href={`mailto:${c.email}`}>{c.email}</a><CopyButton text={c.email} label="Скопіювати e-mail" /></p>}
-      <p class="vac__big"><a class="clink" href={`tel:${c.phone.replace(/\s/g, '')}`}>{c.phone}</a></p>
-      {c.phoneNote && <p class="muted">{c.phoneNote}</p>}
-    </div>
   </div>
 </Base>
 
@@ -51,10 +41,4 @@ const c = site.contacts;
   .vac__empty { background: var(--violet-soft); color: var(--violet-ink); border-radius: var(--radius); padding: 32px; display: grid; gap: 8px; }
   .vac__empty h2 { font-size: 26px; }
   .vac__empty p { margin: 0; }
-  .vac__apply { background: var(--bg-soft); border-radius: var(--radius); padding: 32px; display: grid; gap: 10px; max-width: 720px; }
-  .vac__apply p { margin: 0; }
-  .vac__big { font-size: 22px; font-weight: 800; overflow-wrap: anywhere; }
-  .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .clink { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 30%, transparent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
-  .clink:hover { text-decoration-color: currentColor; }
 </style>
