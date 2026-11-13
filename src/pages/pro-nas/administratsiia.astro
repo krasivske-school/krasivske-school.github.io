@@ -32,7 +32,8 @@ import site from '../../data/site.json';
   .person { background: var(--bg-soft); border-radius: var(--radius); padding: 28px; display: grid; gap: 12px; align-content: start; }
   .person--main { background: var(--ink); color: var(--bg); grid-column: 1 / -1; }
   .person.person--main ul { color: color-mix(in srgb, var(--bg) 88%, var(--ink)); }
-  .person__role { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+  .person__role { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--violet); }
+  .person--main .person__role { color: color-mix(in srgb, var(--violet) 45%, var(--bg)); }
   .person h2 { font-size: 24px; }
   .person ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; color: var(--muted); font-size: 15px; }
   .person__phone { font-size: 22px; font-weight: 800; }

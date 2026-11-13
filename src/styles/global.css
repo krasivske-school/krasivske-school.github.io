@@ -13,7 +13,7 @@
   --ink: #000000;
   --muted: #5c6066;
   --line: #e1e3e6;
-  --link: #1650c8;
+  --link: var(--violet);
   --accent: #ffd400;
   --violet: #534ab7;
   --violet-soft: #e4e1fb;
@@ -33,7 +33,7 @@
     --ink: #ffffff;
     --muted: #a3a8b0;
     --line: #2c2f35;
-    --link: #8db1ff;
+    --link: var(--violet);
     --grad: linear-gradient(115deg, #17332a 0%, #1d2240 45%, #3a1f2d 100%);
     color-scheme: dark;
   }
@@ -44,7 +44,7 @@
   --ink: #ffffff;
   --muted: #a3a8b0;
   --line: #2c2f35;
-  --link: #8db1ff;
+  --link: var(--violet);
   --grad: linear-gradient(115deg, #17332a 0%, #1d2240 45%, #3a1f2d 100%);
   --violet: #8f87ea;
   --violet-soft: #2e2a5e;
@@ -155,7 +155,7 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 /* Схема «Структура та органи управління»: рівні зверху вниз, зі стрілками між ними. */
 .org { display: grid; gap: 0; }
 .org__tier { display: grid; gap: 12px; }
-.prose .org__label { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.prose .org__label { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); text-align: center; }
 .org__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .org__card {
   flex: 1 1 160px; max-width: 360px; min-width: 0;
