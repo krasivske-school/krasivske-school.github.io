@@ -138,6 +138,7 @@ collections:
             widget: image
             required: false
           - { name: edrpou, label: Код ЄДРПОУ, widget: string, required: false }
+          - { name: isuo, label: Код в системі ІСУО, widget: string, required: false }
           - { name: enrollUrl, label: Посилання на електронний запис до 1 класу, widget: string, required: false }
           - name: facts
             label: Цифри на головній

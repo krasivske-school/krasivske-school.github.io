@@ -68,6 +68,7 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
         <b>{site.fullName}</b>
         <span>{site.contacts.address}</span>
         {site.edrpou && <span>Код ЄДРПОУ: {site.edrpou}</span>}
+        {site.isuo && <span>Код в системі ІСУО: {site.isuo}</span>}
       </div>
       <div class="foot__col">
         <span class="foot__phone"><span>Телефон: {site.contacts.phone}</span>{site.contacts.phoneNote && <span class="foot__who">{site.contacts.phoneNote.charAt(0).toUpperCase() + site.contacts.phoneNote.slice(1)}</span>}</span>

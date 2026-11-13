@@ -21,6 +21,7 @@ const c = site.contacts;
         {c.email && (<><span class="label">E-mail</span><p class="big row"><a class="clink" href={`mailto:${c.email}`}>{c.email}</a><CopyButton text={c.email} label="Скопіювати e-mail" /></p></>)}
         {c.facebook && <p><a class="clink" href={c.facebook} target="_blank" rel="noopener">Сторінка у Facebook</a></p>}
         {site.edrpou && <p class="muted">Код ЄДРПОУ: {site.edrpou}</p>}
+        {site.isuo && <p class="muted">Код в системі ІСУО: {site.isuo}</p>}
       </div>
     </div>
 
