@@ -49,11 +49,11 @@ description: "Села, закріплені за закладом освіти,
 <details>
 <summary>Рішення № 581 повністю (скан, 6 сторінок)</summary>
 
-<p><img src="https://i.ibb.co/r4zRxhP/pages-to-jpg-0001.jpg" alt="Рішення № 581, сторінка 1" loading="lazy" /></p>
-<p><img src="https://i.ibb.co/swV7xs6/pages-to-jpg-0002.jpg" alt="Рішення № 581, сторінка 2" loading="lazy" /></p>
-<p><img src="https://i.ibb.co/x8Btc61/pages-to-jpg-0003.jpg" alt="Рішення № 581, додаток 1, сторінка 1" loading="lazy" /></p>
-<p><img src="https://i.ibb.co/LgbkZZt/pages-to-jpg-0004.jpg" alt="Рішення № 581, додаток 1, сторінка 2" loading="lazy" /></p>
-<p><img src="https://i.ibb.co/VNfX2zY/pages-to-jpg-0005.jpg" alt="Рішення № 581, додаток 2, сторінка 1" loading="lazy" /></p>
-<p><img src="https://i.ibb.co/zQCySqm/pages-to-jpg-0006.jpg" alt="Рішення № 581, додаток 2, сторінка 2" loading="lazy" /></p>
+<p><img src="/uploads/terytorii/rishennia-581-1.jpg" alt="Рішення № 581, сторінка 1" loading="lazy" /></p>
+<p><img src="/uploads/terytorii/rishennia-581-2.jpg" alt="Рішення № 581, сторінка 2" loading="lazy" /></p>
+<p><img src="/uploads/terytorii/rishennia-581-3.jpg" alt="Рішення № 581, додаток 1, сторінка 1" loading="lazy" /></p>
+<p><img src="/uploads/terytorii/rishennia-581-4.jpg" alt="Рішення № 581, додаток 1, сторінка 2" loading="lazy" /></p>
+<p><img src="/uploads/terytorii/rishennia-581-5.jpg" alt="Рішення № 581, додаток 2, сторінка 1" loading="lazy" /></p>
+<p><img src="/uploads/terytorii/rishennia-581-6.jpg" alt="Рішення № 581, додаток 2, сторінка 2" loading="lazy" /></p>
 
 </details>
