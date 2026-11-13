@@ -15,6 +15,14 @@ import site from '../../data/site.json';
           {p.phone && <p class="person__phone">{p.phone}</p>}
         </article>
       ))}
+      {site.support && (
+        <article class="person">
+          <span class="person__role">Розробник сайту</span>
+          <h2>{site.support.name}</h2>
+          <ul><li>Створив і підтримує цей сайт</li></ul>
+          {site.support.phone && <p class="person__phone">{site.support.phone}</p>}
+        </article>
+      )}
     </div>
   </div>
 </Base>
