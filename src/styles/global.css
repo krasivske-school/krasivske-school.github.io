@@ -113,6 +113,7 @@ p { margin: 0; }
   .btn::after { display: none; }
 }
 .btn--ghost { background: transparent; color: var(--ink); }
+.btn--violet { background: var(--violet); border-color: var(--violet); color: #fff; }
 
 /* Картки */
 .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }

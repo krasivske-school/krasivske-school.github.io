@@ -60,7 +60,7 @@ const gallery = [...folderPhotos(news?.photosFolder), ...(news?.gallery ?? [])].
       </section>
     )}
 
-    <p class="back"><a class="btn btn--ghost" href={url('/novyny/')}>← Усі новини</a></p>
+    <p class="back"><a class="btn btn--violet" href={url('/novyny/')}>← Усі новини</a></p>
   </div>
 
   {gallery.length > 0 && (
@@ -100,7 +100,7 @@ const gallery = [...folderPhotos(news?.photosFolder), ...(news?.gallery ?? [])].
 </script>
 
 <style>
-  .date { font-weight: 600; }
+  .date { font-weight: 600; color: var(--violet); }
   .back { margin: 32px 0 0; }
   .cover { width: 100%; max-height: 520px; object-fit: cover; }
 
