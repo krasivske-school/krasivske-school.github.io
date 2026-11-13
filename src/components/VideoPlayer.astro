@@ -1,0 +1,41 @@
+---
+// Перегляд відео YouTube поверх сторінки: клік по <a data-yt="код"> відкриває плеєр.
+// Без JavaScript посилання просто відкриває відео на YouTube.
+---
+<dialog class="vp" aria-label="Перегляд відео">
+  <div class="vp__frame"></div>
+  <button class="vp__close" type="button" aria-label="Закрити">✕</button>
+</dialog>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('.vp');
+  const frame = dlg?.querySelector('.vp__frame');
+  const links = document.querySelectorAll<HTMLAnchorElement>('a[data-yt]');
+  if (dlg && frame && links.length) {
+    const close = () => dlg.close();
+    dlg.addEventListener('close', () => { frame.innerHTML = ''; });
+    dlg.querySelector('.vp__close')!.addEventListener('click', close);
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+    links.forEach((a) => a.addEventListener('click', (e) => {
+      const id = a.dataset.yt;
+      if (!id || !/^[\w-]{6,20}$/.test(id)) return;
+      e.preventDefault();
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      f.title = a.textContent?.trim() || 'Відео';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      frame.replaceChildren(f);
+      dlg.showModal();
+    }));
+  }
+</script>
+
+<style>
+  .vp { border: 0; padding: 0; background: transparent; width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: none; overflow: visible; }
+  .vp::backdrop { background: rgba(0, 0, 0, .92); }
+  .vp__frame { aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000; }
+  .vp__frame :global(iframe) { width: 100%; height: 100%; border: 0; display: block; }
+  .vp__close { position: fixed; top: max(16px, env(safe-area-inset-top)); right: 16px; width: 52px; height: 52px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 22px; cursor: pointer; }
+  .vp__close:hover { background: rgba(255, 255, 255, .28); }
+</style>
