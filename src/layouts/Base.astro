@@ -74,12 +74,6 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
         <span class="foot__phone"><span>Телефон: {site.contacts.phone}</span>{site.contacts.phoneNote && <span class="foot__who">{site.contacts.phoneNote.charAt(0).toUpperCase() + site.contacts.phoneNote.slice(1)}</span>}</span>
         {site.contacts.email && <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a>}
         {site.contacts.facebook && <a href={site.contacts.facebook}>Facebook</a>}
-        {site.support && (
-          <span class="foot__phone foot__dev">
-            {site.support.phone && <span>Телефон: {site.support.phone}</span>}
-            <span>Розробник сайту {site.support.name}</span>
-          </span>
-        )}
       </div>
       <nav class="foot__col" aria-label="Нижнє меню">
         {sections.map((s) => <a href={url(`/${s.id}/`)}>{s.title}</a>)}
@@ -179,9 +173,7 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   .foot__in { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 32px 48px; }
   .foot__col { display: grid; gap: 8px; align-content: start; min-width: 0; }
   .foot__col a { color: var(--ink); }
-  .foot__phone { display: grid; }
-  .foot__dev { margin-top: 8px; }
-  @media (min-width: 761px) { .foot__who { white-space: nowrap; } }
+  .foot__phone { display: grid; }  @media (min-width: 761px) { .foot__who { white-space: nowrap; } }
   .foot__copy { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   @media (max-width: 760px) { .foot__in { grid-template-columns: 1fr; } }
 </style>
