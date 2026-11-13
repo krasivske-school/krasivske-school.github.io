@@ -10,10 +10,11 @@ const news = (await getCollection('news', ({ data }) => !data.draft))
   .slice(0, 6);
 
 const quick = [
-  { title: 'Вступ до 1 класу', text: 'Документи, заява і строки зарахування', href: '/batkam/vstup-do-1-klasu/' },
+  // look: колір плитки — 'violet', 'dark' або без нього (біла)
+  { title: 'Вступ до 1 класу', text: 'Документи, заява і строки зарахування', href: '/batkam/vstup-do-1-klasu/', look: 'violet' },
   { title: 'Документи закладу', text: 'Статут, ліцензії, звіти, кошторис', href: '/dokumenty/' },
-  { title: 'Адміністрація', text: 'Хто за що відповідає і як зв’язатися', href: '/pro-nas/administratsiia/' },
   { title: 'Протидія булінгу', text: 'Куди звернутися і як подати заяву', href: '/batkam/protydiia-bulinhu/' },
+  { title: 'Адміністрація', text: 'Хто за що відповідає і як зв’язатися', href: '/pro-nas/administratsiia/', look: 'dark' },
 ];
 ---
 <Base>
@@ -31,8 +32,8 @@ const quick = [
       <figure class="tile tile--photo">
         <img src={url('/uploads/shkola.jpg')} alt="Будівля Красівського ліцею восени" width="1600" height="879" />
       </figure>
-      {quick.map((q, i) => (
-        <a class:list={['tile', 'tile--link', i === 0 && 'tile--violet', i === 3 && 'tile--dark']} href={url(q.href)}>
+      {quick.map((q) => (
+        <a class:list={['tile', 'tile--link', q.look && `tile--${q.look}`]} href={url(q.href)}>
           <h3>{q.title}</h3>
           <p>{q.text}</p>
           <span class="arrow" aria-hidden="true">→</span>
