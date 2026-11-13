@@ -28,11 +28,6 @@ const quick = [
           {site.contacts.facebook && <a class="btn btn--ghost" href={site.contacts.facebook} target="_blank" rel="noopener">Ми у Facebook</a>}
         </div>
       </div>
-      <dl class="facts">
-        {site.facts.map((f) => (
-          <div><dt>{f.label}</dt><dd>{f.value}</dd></div>
-        ))}
-      </dl>
     </div>
   </section>
 
@@ -87,16 +82,12 @@ const quick = [
 
 <style>
   .hero { background: var(--grad); }
-  .hero__in { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: end; padding-block: 72px; }
+  .hero__in { display: grid; gap: 48px; padding-block: 72px; }
   .hero__text { display: grid; gap: 20px; min-width: 0; }
   .photo { margin: 32px 0 0; }
   .photo img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 879; object-fit: cover; border-radius: var(--radius); }
   .hero__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
-  .facts { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .facts div { background: var(--bg); border-radius: var(--radius); padding: 22px; display: grid; gap: 4px; }
-  .facts dt { font-size: 14px; color: var(--muted); order: 2; }
-  .facts dd { margin: 0; font-size: 34px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-  @media (max-width: 900px) { .hero__in { grid-template-columns: 1fr; padding-block: 48px; } }
+  @media (max-width: 900px) { .hero__in { padding-block: 48px; } }
 
   .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
   .newsgrid { display: grid; gap: 32px 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
