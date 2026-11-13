@@ -3,7 +3,57 @@ section: "batkam"
 group: "Вступ"
 title: "Території обслуговування"
 order: 30
-description: "Території, закріплені за закладом освіти."
+description: "Села, закріплені за закладом освіти, і хто зараховується в першу чергу."
 ---
 
-![](https://i.ibb.co/r4zRxhP/pages-to-jpg-0001.jpg)![](https://i.ibb.co/swV7xs6/pages-to-jpg-0002.jpg)![](https://i.ibb.co/x8Btc61/pages-to-jpg-0003.jpg)![](https://i.ibb.co/LgbkZZt/pages-to-jpg-0004.jpg)![](https://i.ibb.co/VNfX2zY/pages-to-jpg-0005.jpg)![](https://i.ibb.co/zQCySqm/pages-to-jpg-0006.jpg)
+Території обслуговування затверджені рішенням Новопільської сільської ради **№ 581 від 17 серпня 2021 року** «Про закріплення території обслуговування за закладами освіти Новопільської сільської ради».
+
+## Заклад у с. Красівське
+
+<p class="places-addr">вул. Центральна, 48, с. Красівське</p>
+<ul class="places">
+<li>Красівське</li>
+<li>Суворовка</li>
+<li>Красне</li>
+<li>Садове</li>
+<li>Новожитомир</li>
+<li>Нові Садки</li>
+<li>Водяне</li>
+<li>Трудове</li>
+</ul>
+
+## Веселівська філія
+
+<p class="places-addr">вул. Центральна, 1, с. Веселе</p>
+<ul class="places">
+<li>Веселе</li>
+<li>Бурлацьке</li>
+<li>Львів</li>
+<li>Нова Зоря</li>
+<li>Новий Шлях</li>
+<li>Новомар’янське</li>
+</ul>
+
+## Хто зараховується до 1 класу
+
+**У першу чергу** — діти, які проживають на території обслуговування закладу (села зі списків вище).
+
+**Поза територією обслуговування** рішення дозволяє зарахувати:
+
+- дітей працівників закладу;
+- дітей, чиї старші брати чи сестри вже навчаються в закладі;
+- дітей, зареєстрованих як внутрішньо переміщені особи.
+
+Не знайшли свого села або маєте питання щодо зарахування? [Зателефонуйте нам](/kontakty/) — підкажемо.
+
+<details>
+<summary>Рішення № 581 повністю (скан, 6 сторінок)</summary>
+
+<p><img src="https://i.ibb.co/r4zRxhP/pages-to-jpg-0001.jpg" alt="Рішення № 581, сторінка 1" loading="lazy" /></p>
+<p><img src="https://i.ibb.co/swV7xs6/pages-to-jpg-0002.jpg" alt="Рішення № 581, сторінка 2" loading="lazy" /></p>
+<p><img src="https://i.ibb.co/x8Btc61/pages-to-jpg-0003.jpg" alt="Рішення № 581, додаток 1, сторінка 1" loading="lazy" /></p>
+<p><img src="https://i.ibb.co/LgbkZZt/pages-to-jpg-0004.jpg" alt="Рішення № 581, додаток 1, сторінка 2" loading="lazy" /></p>
+<p><img src="https://i.ibb.co/VNfX2zY/pages-to-jpg-0005.jpg" alt="Рішення № 581, додаток 2, сторінка 1" loading="lazy" /></p>
+<p><img src="https://i.ibb.co/zQCySqm/pages-to-jpg-0006.jpg" alt="Рішення № 581, додаток 2, сторінка 2" loading="lazy" /></p>
+
+</details>
