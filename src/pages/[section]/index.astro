@@ -16,7 +16,10 @@ const pages = (await getCollection('pages', ({ data }) => data.section === secti
 
 // Додаткові «вбудовані» сторінки, які не є markdown-файлами.
 const extra = section === 'pro-nas'
-  ? [{ id: 'administratsiia', title: 'Адміністрація', description: 'Директор, заступники і працівники закладу.', group: undefined, order: 20 }]
+  ? [
+      { id: 'administratsiia', title: 'Адміністрація', description: 'Директор, заступники і працівники закладу.', group: undefined, order: 20 },
+      { id: 'vakansii', title: 'Вакансії', description: 'Вільні посади в закладі і як подати заявку.', group: undefined, order: 40 },
+    ]
   : [];
 
 const items = [

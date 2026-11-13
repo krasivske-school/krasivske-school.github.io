@@ -182,3 +182,12 @@ collections:
               - { name: name, label: ПІБ, widget: string }
               - { name: details, label: Відомості (по одному рядку), widget: list, required: false }
               - { name: phone, label: Телефон, widget: string, required: false }
+          - name: vacancies
+            label: Вакансії (порожній список — на сайті «вакансій немає»)
+            widget: list
+            required: false
+            summary: "{{fields.position}}"
+            fields:
+              - { name: position, label: Посада, widget: string }
+              - { name: load, label: "Навантаження (напр. 18 годин на тиждень, 0,5 ставки)", widget: string, required: false }
+              - { name: note, label: Вимоги або примітка, widget: text, required: false }
