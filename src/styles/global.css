@@ -15,6 +15,9 @@
   --line: #e1e3e6;
   --link: #1650c8;
   --accent: #ffd400;
+  --violet: #534ab7;
+  --violet-soft: #e4e1fb;
+  --violet-ink: #26215c;
   --grad: linear-gradient(115deg, #d8f3e8 0%, #e2e6fb 45%, #f7e3ee 100%);
   --radius: 24px;
   --radius-sm: 16px;
@@ -43,7 +46,13 @@
   --line: #2c2f35;
   --link: #8db1ff;
   --grad: linear-gradient(115deg, #17332a 0%, #1d2240 45%, #3a1f2d 100%);
+  --violet: #8f87ea;
+  --violet-soft: #2e2a5e;
+  --violet-ink: #e9e7ff;
   color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) { --violet: #8f87ea; --violet-soft: #2e2a5e; --violet-ink: #e9e7ff; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }

@@ -17,37 +17,31 @@ const quick = [
 ];
 ---
 <Base>
-  <section class="hero">
-    <div class="wrap hero__in">
-      <div class="hero__text">
+  <section class="bento-wrap">
+    <div class="wrap bento">
+      <div class="tile tile--main">
         <span class="eyebrow">{site.tagline}</span>
         <h1>{site.fullName}</h1>
         <div class="hero__btns">
-          <a class="btn btn--ghost" href={url('/pro-nas/')}>Про нас</a>
+          <a class="btn btn--violet" href={url('/pro-nas/')}>Про нас →</a>
           <a class="btn btn--ghost" href={url('/kontakty/')}>Контакти</a>
-          {site.contacts.facebook && <a class="btn btn--ghost" href={site.contacts.facebook} target="_blank" rel="noopener">Ми у Facebook</a>}
+          {site.contacts.facebook && <a class="btn btn--ghost" href={site.contacts.facebook} target="_blank" rel="noopener">Facebook</a>}
         </div>
       </div>
+      <figure class="tile tile--photo">
+        <img src={url('/uploads/shkola.jpg')} alt="Будівля Красівського ліцею восени" width="1600" height="879" />
+      </figure>
+      {quick.map((q, i) => (
+        <a class:list={['tile', 'tile--link', i === 0 && 'tile--violet', i === 3 && 'tile--dark']} href={url(q.href)}>
+          <h3>{q.title}</h3>
+          <p>{q.text}</p>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      ))}
     </div>
   </section>
 
   <div class="wrap">
-    <figure class="photo">
-      <img src={url('/uploads/shkola.jpg')} alt="Будівля Красівського ліцею восени" width="1600" height="879" />
-    </figure>
-
-    <section class="section">
-      <h2>Швидкий доступ</h2>
-      <div class="cards">
-        {quick.map((q) => (
-          <a class="card" href={url(q.href)}>
-            <h3>{q.title}</h3>
-            <p>{q.text}</p>
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        ))}
-      </div>
-    </section>
 
     <section class="section">
       <div class="head">
@@ -81,13 +75,37 @@ const quick = [
 </Base>
 
 <style>
-  .hero { background: var(--grad); }
-  .hero__in { display: grid; gap: 48px; padding-block: 72px; }
-  .hero__text { display: grid; gap: 20px; min-width: 0; }
-  .photo { margin: 32px 0 0; }
-  .photo img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 879; object-fit: cover; border-radius: var(--radius); }
-  .hero__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
-  @media (max-width: 900px) { .hero__in { padding-block: 48px; } }
+  .bento-wrap { background: var(--bg-soft); padding-block: 24px 40px; }
+  .bento { display: grid; gap: 14px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .tile { background: var(--bg); border-radius: 28px; padding: 28px; margin: 0; min-width: 0; }
+  .tile--main { grid-column: span 2; grid-row: span 2; display: grid; gap: 20px; align-content: space-between; padding: 36px; }
+  .tile--main h1 { font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.02em; }
+  .tile--photo { grid-column: span 2; grid-row: span 2; padding: 0; overflow: hidden; }
+  .tile--photo img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
+  .tile--link { display: grid; gap: 6px; align-content: start; color: var(--ink); text-decoration: none; min-height: 170px; transition: transform .15s; }
+  .tile--link:hover { transform: translateY(-3px); }
+  .tile--link h3 { font-size: 20px; }
+  .tile--link p { color: var(--muted); font-size: 15px; margin: 0; }
+  .tile--link .arrow { margin-top: auto; font-size: 24px; line-height: 1; }
+  .tile--violet { background: var(--violet-soft); color: var(--violet-ink); }
+  .tile--violet p { color: var(--violet-ink); opacity: .8; }
+  .tile--dark { background: var(--ink); color: var(--bg); }
+  .tile--dark p { color: color-mix(in srgb, var(--bg) 75%, var(--ink)); }
+  .hero__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn--violet { background: var(--violet); border-color: var(--violet); color: #fff; }
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tile--main, .tile--photo { grid-column: 1 / -1; grid-row: auto; }
+    .tile--photo img { min-height: 0; aspect-ratio: 16 / 10; }
+  }
+  @media (max-width: 520px) {
+    .tile { padding: 22px; border-radius: 24px; }
+    .tile--main { padding: 26px; }
+    .tile.tile--photo { padding: 0; }
+    .tile--link { min-height: 130px; padding: 20px; }
+    .tile--link h3 { font-size: 17px; hyphens: auto; }
+    .tile--link p { display: none; }
+  }
 
   .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
   .newsgrid { display: grid; gap: 32px 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
