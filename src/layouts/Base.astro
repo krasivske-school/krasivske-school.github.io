@@ -75,8 +75,8 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
         {site.contacts.facebook && <a href={site.contacts.facebook}>Facebook</a>}
         {site.support && (
           <span class="foot__phone foot__dev">
-            <span>Розробник сайту: {site.support.name}</span>
-            {site.support.phone && <span>{site.support.phone}</span>}
+            {site.support.phone && <span>Телефон: {site.support.phone}</span>}
+            <span>Розробник сайту {site.support.name}</span>
           </span>
         )}
       </div>
@@ -179,7 +179,7 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   .foot__col { display: grid; gap: 8px; align-content: start; min-width: 0; }
   .foot__col a { color: var(--ink); }
   .foot__phone { display: grid; }
-  .foot__dev { margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--line); justify-items: start; }
+  .foot__dev { margin-top: 8px; }
   @media (min-width: 761px) { .foot__who { white-space: nowrap; } }
   .foot__copy { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   @media (max-width: 760px) { .foot__in { grid-template-columns: 1fr; } }
