@@ -153,6 +153,17 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose .places { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .prose .places li { background: var(--violet-soft); color: var(--violet-ink); font-weight: 600; padding: 8px 16px; border-radius: 999px; }
 .prose .places-addr { color: var(--muted); margin-top: -10px; }
+.prose .places li:has(> a) { padding: 0; }
+.prose .places li > a { display: block; padding: 8px 16px; color: inherit; text-decoration: none; border-radius: 999px; }
+.prose .places li > a:hover { background: color-mix(in srgb, var(--violet) 18%, transparent); }
+/* Блок «Потрібна допомога?» */
+.prose .help { background: var(--violet-soft); color: var(--violet-ink); border-radius: var(--radius); padding: 28px; display: grid; gap: 14px; }
+.prose .help > * { margin: 0; }
+.prose .help__title { font-size: 22px; font-weight: 800; }
+.prose .help a { color: inherit; text-decoration-thickness: 2px; }
+.prose .help .org__row { justify-content: flex-start; }
+.prose .help .org__card { background: var(--bg); color: var(--ink); text-align: left; }
+.prose h2[id] { scroll-margin-top: 96px; }
 /* Сітка відео з обкладинками (сторінка «Шкільне відео») */
 .prose .vgrid { display: grid; gap: 24px 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
 .prose .vcard { display: grid; gap: 10px; align-content: start; color: var(--ink); text-decoration: none; }
