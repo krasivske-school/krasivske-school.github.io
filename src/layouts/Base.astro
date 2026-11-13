@@ -76,7 +76,7 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
         {site.support && (
           <span class="foot__phone foot__dev">
             <span>Розробник сайту: {site.support.name}</span>
-            {site.support.phone && <a href={`tel:${site.support.phone.replace(/\s/g, '')}`}>{site.support.phone}</a>}
+            {site.support.phone && <span>{site.support.phone}</span>}
           </span>
         )}
       </div>
