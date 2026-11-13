@@ -171,6 +171,7 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose .help__title { font-size: 22px; font-weight: 800; }
 .prose .help a { color: inherit; text-decoration-thickness: 2px; }
 .prose .help .org__row { justify-content: flex-start; }
+.prose .help ol, .prose .help ul { padding-left: 1.3em; display: grid; gap: 6px; margin: 0; }
 .prose .help .org__card { background: var(--bg); color: var(--ink); text-align: left; }
 .prose h2[id] { scroll-margin-top: 96px; }
 /* Сітка відео з обкладинками (сторінка «Шкільне відео») */
