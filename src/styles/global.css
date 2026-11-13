@@ -156,6 +156,15 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose .places li:has(> a) { padding: 0; }
 .prose .places li > a { display: block; padding: 8px 16px; color: inherit; text-decoration: none; border-radius: 999px; }
 .prose .places li > a:hover { background: color-mix(in srgb, var(--violet) 18%, transparent); }
+/* Картки «Які документи потрібні» (сторінка «Правила прийому») */
+.prose .admit { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.prose .admit__card { background: var(--bg-soft); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; align-content: start; }
+.prose .admit__card > * { margin: 0; }
+.prose .admit__card--violet { background: var(--violet-soft); color: var(--violet-ink); }
+.prose .admit__title { font-size: 22px; font-weight: 800; }
+.prose .admit__card ul { padding-left: 1.1em; gap: 4px; }
+.prose .admit__more { font-weight: 600; }
+.prose .admit__card--violet a { color: inherit; }
 /* Блок «Потрібна допомога?» */
 .prose .help { background: var(--violet-soft); color: var(--violet-ink); border-radius: var(--radius); padding: 28px; display: grid; gap: 14px; }
 .prose .help > * { margin: 0; }
