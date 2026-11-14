@@ -225,4 +225,35 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose .plan td:nth-child(3) { white-space: nowrap; }
 .prose .plan .plan__group th { padding-top: 22px; font-size: 16px; color: var(--ink); }
 
+/* Сторінка «Історія школи»: фото, цифри-віхи, стрічка часу, герб. */
+.prose .hist-hero { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--bg-soft); }
+.prose .hist-hero img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 0; }
+.prose .hist-facts { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
+.prose .hist-fact { background: var(--bg-soft); border-radius: var(--radius-sm); padding: 18px 20px; display: grid; gap: 2px; align-content: start; }
+.prose .hist-fact b { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.prose .hist-fact span { font-size: 14px; line-height: 1.4; color: var(--muted); }
+.prose .hist-fact--violet { background: var(--violet-soft); color: var(--violet-ink); }
+.prose .hist-fact--violet span { color: inherit; opacity: .8; }
+.prose .tl { list-style: none; padding: 0; display: grid; gap: 0; }
+.prose .tl__item { position: relative; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 20px; padding-bottom: 28px; }
+.prose .tl__item::before { content: ''; position: absolute; left: 47px; top: 34px; bottom: 0; width: 2px; background: var(--line); }
+.prose .tl__item:last-child { padding-bottom: 0; }
+.prose .tl__item:last-child::before { display: none; }
+.prose .tl__year { justify-self: center; align-self: start; position: relative; z-index: 1;
+  background: var(--violet-soft); color: var(--violet-ink); font-weight: 800; font-size: 16px;
+  padding: 6px 14px; border-radius: 999px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prose .tl__body { display: grid; gap: 8px; padding-top: 4px; }
+.prose .tl__body b { font-size: 19px; line-height: 1.3; }
+.prose .tl__body p { margin: 0; }
+.prose .tl__body img { margin-top: 6px; width: 100%; max-width: 480px; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 560px) {
+  .prose .tl__item { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-left: 22px; }
+  .prose .tl__item::before { left: 5px; top: 8px; }
+  .prose .tl__item::after { content: ''; position: absolute; left: 0; top: 10px; width: 12px; height: 12px; border-radius: 999px; background: var(--violet); }
+  .prose .tl__year { justify-self: start; }
+}
+.prose .hist-source { color: var(--muted); font-size: 15px; font-style: italic; border-left: 3px solid var(--violet); padding-left: 14px; }
+.prose .hist-crest { margin: 0; background: var(--bg-soft); border-radius: var(--radius); padding: 32px; display: grid; place-items: center; }
+.prose .hist-crest img { max-width: 260px; width: 100%; border-radius: 0; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
