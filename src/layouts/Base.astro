@@ -21,6 +21,8 @@ const fullTitle = title ? `${title} — ${site.name}` : site.fullName;
   <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
+  <!-- Лічильник відвідувань GoatCounter (без cookies). Статистика: https://astion.goatcounter.com -->
+  <script is:inline data-goatcounter="https://astion.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   <script is:inline>
     // Застосувати збережену тему ще до показу сторінки, щоб не було блимання.
     try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
