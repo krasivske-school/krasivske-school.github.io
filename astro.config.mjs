@@ -39,10 +39,19 @@ function facebookVideo(href) {
   if (!ok) return null;
   const full = /^https?:\/\//i.test(u) ? u : `https://${u}`;
   const vertical = /\/(?:reel|share\/r)\//i.test(u);
+  // Короткі посилання «Поділитися» (share/…, fb.watch) плеєр Facebook не розуміє — для них лише картка-посилання.
+  const short = /\/share\/|fb\.watch\//i.test(u);
   return {
+    url: full,
+    short,
     src: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(full)}&show_text=false&width=${vertical ? 400 : 1000}`,
     vertical,
   };
+}
+
+const fbIcon = { type: 'element', tagName: 'span', properties: { className: ['fbvideo__play'], ariaHidden: 'true' }, children: [{ type: 'text', value: '▶' }] };
+function fbLink(url, text, cls) {
+  return { type: 'element', tagName: 'a', properties: { href: url, className: [cls] }, children: [{ type: 'text', value: text }] };
 }
 
 function youtubeEmbeds() {
@@ -68,10 +77,22 @@ function youtubeEmbeds() {
           return;
         }
         const fb = href && facebookVideo(href);
+        if (fb && fb.short) {
+          // картка: «▶ Дивитися відео на Facebook»
+          node.tagName = 'div';
+          node.properties = { className: ['fbvideo', 'fbvideo--card'] };
+          const a = fbLink(fb.url, 'Дивитися відео на Facebook', 'fbvideo__card');
+          a.children.unshift(fbIcon);
+          node.children = [a];
+          return;
+        }
         if (fb) {
           node.tagName = 'div';
-          node.properties = { className: fb.vertical ? ['video', 'video--vertical'] : ['video'] };
-          node.children = [iframe(fb.src)];
+          node.properties = { className: ['fbvideo'] };
+          node.children = [
+            { type: 'element', tagName: 'div', properties: { className: fb.vertical ? ['video', 'video--vertical'] : ['video'] }, children: [iframe(fb.src)] },
+            fbLink(fb.url, 'Не відтворюється? Дивитися на Facebook →', 'fbvideo__alt'),
+          ];
           return;
         }
       }

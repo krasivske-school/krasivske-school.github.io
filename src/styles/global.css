@@ -151,6 +151,16 @@ a.card:hover { background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink)); }
 .prose .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 /* Вертикальні відео (Facebook Reels) */
 .prose .video--vertical { aspect-ratio: 9 / 16; width: min(100%, 400px); justify-self: center; }
+/* Відео з Facebook: плеєр + запасне посилання, або картка для коротких посилань */
+.prose .fbvideo { display: grid; gap: 8px; }
+.prose .fbvideo__alt { justify-self: center; font-size: 14px; color: var(--muted); }
+.prose .fbvideo__card {
+  display: flex; align-items: center; gap: 14px; padding: 18px 22px;
+  background: var(--bg-soft); border-radius: var(--radius-sm);
+  color: var(--ink); font-weight: 700; text-decoration: none;
+}
+.prose .fbvideo__card:hover { background: var(--line); }
+.prose .fbvideo__play { width: 44px; height: 44px; border-radius: 999px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-size: 16px; flex: none; padding-left: 3px; }
 /* Список сіл-«пігулок» (сторінка «Території обслуговування») */
 .prose .places { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .prose .places li { background: var(--violet-soft); color: var(--violet-ink); font-weight: 600; padding: 8px 16px; border-radius: 999px; }
