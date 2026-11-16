@@ -30,8 +30,30 @@ function youtubeId(href) {
   );
   return m ? m[1] : null;
 }
+// Відео з Facebook: посилання на відео чи reels окремим рядком → вбудований плеєр Facebook.
+// Працює лише для ПУБЛІЧНИХ відео (сторінка і відео відкриті для всіх).
+function facebookVideo(href) {
+  const u = String(href).trim();
+  const ok = /^(?:https?:\/\/)?(?:(?:www|m|web)\.)?facebook\.com\/(?:[^/?#]+\/videos\/|watch\/?\?v=|reel\/|share\/(?:v|r)\/|video\.php\?v=)/i.test(u)
+    || /^(?:https?:\/\/)?fb\.watch\//i.test(u);
+  if (!ok) return null;
+  const full = /^https?:\/\//i.test(u) ? u : `https://${u}`;
+  const vertical = /\/(?:reel|share\/r)\//i.test(u);
+  return {
+    src: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(full)}&show_text=false&width=${vertical ? 400 : 1000}`,
+    vertical,
+  };
+}
+
 function youtubeEmbeds() {
   const isBlank = (n) => n.type === 'text' && !n.value.trim();
+  const iframe = (src) => ({
+    type: 'element', tagName: 'iframe', children: [],
+    properties: {
+      src, loading: 'lazy', allowFullScreen: true, title: 'Відео',
+      allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+    },
+  });
   const walk = (node) => {
     if (node.type === 'element' && node.tagName === 'p') {
       const kids = (node.children ?? []).filter((n) => !isBlank(n));
@@ -42,13 +64,14 @@ function youtubeEmbeds() {
         if (id) {
           node.tagName = 'div';
           node.properties = { className: ['video'] };
-          node.children = [{
-            type: 'element', tagName: 'iframe', children: [],
-            properties: {
-              src: `https://www.youtube.com/embed/${id}`, loading: 'lazy', allowFullScreen: true, title: 'Відео',
-              allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
-            },
-          }];
+          node.children = [iframe(`https://www.youtube.com/embed/${id}`)];
+          return;
+        }
+        const fb = href && facebookVideo(href);
+        if (fb) {
+          node.tagName = 'div';
+          node.properties = { className: fb.vertical ? ['video', 'video--vertical'] : ['video'] };
+          node.children = [iframe(fb.src)];
           return;
         }
       }

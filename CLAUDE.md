@@ -25,7 +25,9 @@
 - `src/content/pages/*.md` — текстові сторінки (`section`: pro-nas | batkam | dokumenty | novyny; `group`, `order`).
 - `src/lib/nav.ts` — розділи меню. `src/layouts/Base.astro` — шапка (логотип, меню, перемикач теми) і підвал.
 - `src/styles/global.css` — токени кольорів, світла/темна тема (`data-theme` + prefers-color-scheme), стилі `.prose`, `.org` (схема структури), `.plan` (таблиця плану булінгу).
-- `astro.config.mjs` — rehype-плагіни: префікс base для `/uploads/`, зовнішні посилання і файли — у новій вкладці.
+- `astro.config.mjs` — rehype-плагіни: посилання на YouTube **або Facebook-відео** окремим абзацом → вбудований плеєр
+  (`.video`, Reels — `.video--vertical`; Facebook лише для публічних відео), префікс base для `/uploads/`,
+  зовнішні посилання і файли — у новій вкладці.
 - `scripts/import-old-site.mjs` — одноразовий імпорт зі старого сайту krasine_school.klasna.com (уже виконано).
 - `public/uploads/` — фото і файли; `shkola.jpg` (фото будівлі), `logo-shkola.jpg` (мініатюра 200×200 для шапки).
 
